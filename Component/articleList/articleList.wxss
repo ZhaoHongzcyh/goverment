@@ -1,0 +1,45 @@
+/* Component/articleList.wxss */
+.articleList{
+  display: flex;
+  height: 240rpx;
+  justify-content: center;
+  background-color: white;
+  border-bottom: 4rpx solid #F5F5F5;
+}
+.articleLeft{
+  position: relative;
+  flex: 1;
+}
+
+.articleTitle{
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.articleRight{
+  margin-top: 26rpx;
+  width: 248rpx;
+  height: 186rpx;
+  background-size: cover;
+}
+
+.articleBaseInfo{
+  position: absolute;
+  bottom: 36rpx;
+  display: flex;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.commonBase {
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.commonImg{
+  width: 36rpx;
+  height: 36rpx;
+}

@@ -1,0 +1,41 @@
+/* Component/menuList/menulist.wxss */
+.menulist{
+  /* margin-top: 30rpx; */
+}
+
+.swiper{
+  height: 160rpx;
+}
+.turnImgSwip{
+  display: flex;
+  justify-content: center;
+}
+.singlegov{
+  text-align: center;
+  color: #333;
+  font-size: 26rpx;
+  margin-left: calc( (100% - 500rpx) / 12);
+  margin-right: calc( (100% - 500rpx) / 12);
+}
+.govimg{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.line{
+  display: flex;
+  justify-content: center;
+}
+
+.wheelline{
+  margin: 10rpx;
+  width: 32rpx;
+  height: 4rpx;
+  border-radius: 2rpx;
+  background-color: #CCCCCC;
+  border: 1rpx solid red;
+}
+.openline{
+  background-color: #E71600;
+}

@@ -1,0 +1,47 @@
+/* pages/personalCenter/personalcenter.wxss */
+.userinfo{
+  position: relative;
+  text-align: center;
+  background-color: #4963C4;
+  height: 320rpx;
+  padding-top: 40rpx;
+}
+.userphoto{
+  margin: auto;
+  width: 156rpx;
+  height: 156rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.username{
+  color: white;
+  font-size: 30rpx;
+  margin-top: 46rpx;
+}
+
+.singlelist{
+  height: 96rpx;
+  font-size: 30rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #F5F5F5;
+}
+
+.titleimg{
+  width: 40rpx;
+  height: 40rpx;
+  margin: 32rpx 28rpx;
+}
+
+.narow{
+  flex: 3;
+  text-align: right;
+}
+
+.arow{
+  width: 20rpx;
+  height: 20rpx;
+  margin-right: 44rpx;
+}

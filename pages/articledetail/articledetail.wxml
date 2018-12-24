@@ -1,0 +1,47 @@
+<!--pages/articledetail/articledetail.wxml-->
+<view class="commont">
+  <view class="articleinfo">
+    <view class="head">
+      <view class="title">{{ title }}</view>
+      <view class="readnum_time">
+        <view class="writetime">{{ time }}</view>
+        <view class="readnum">
+          <image src="./img/readnum.png" class="readnuming"></image>
+          {{ visitNum }}
+        </view>
+      </view>
+    </view>
+
+    <!-- 文章内容 -->
+    <view class="articleContent">
+      <block wx:for="{{ articleList }}">
+        <view class="articletxt">
+          <text>{{ item.desciption }}</text>
+          <image wx:if="{{ item.imgUrl != null }}" src="{{ item.imgUrl }}" class="articleimg"></image>
+        </view>
+      </block>
+    </view>
+
+    <!-- 评论回复 -->
+    <view class="comment">
+      <block wx:for="{{ replyList }}">
+        <comment 
+          username="{{ item.nickname }}" 
+          time="{{ item.time }}" 
+          comment="{{ item.commentContent }}"/>
+      </block>
+    </view>
+  </view>
+
+  <!-- 底部评论区 -->
+  <footer
+    collectStatus="{{ collectStatus }}"
+    clickupStatus="{{ clickupStatus }}"
+    likenum="{{ summary.likeNum }}"
+    replynum="{{ replyList.length }}"
+    bind:share="share"
+    bind:collect="collect"
+    bind:clickup="clickup"
+    bind:reply="sendReply"
+  />
+</view>

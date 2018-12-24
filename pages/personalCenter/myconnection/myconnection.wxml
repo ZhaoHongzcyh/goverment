@@ -1,0 +1,10 @@
+<!--pages/personalCenter/myconnection/myconnection.wxml-->
+<view class="myconnection">
+  <scroll-view class="single" scroll-x="{{true}}">
+    <view class="singlelist">
+      <articlelist class="article"/>
+      <view class="delbtn">取消收藏</view>
+    </view>
+  </scroll-view>
+</view>
+

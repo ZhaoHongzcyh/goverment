@@ -1,0 +1,20 @@
+/* pages/personalCenter/myconnection/myconnection.wxss */
+.singlelist{
+  display: flex;
+  height: 240rpx;
+  width: 125%;
+  align-items: center;
+}
+.article{
+  width: calc(100% - 180rpx);
+}
+.delbtn{
+  width: 180rpx;
+  height: 100%;
+  line-height: 240rpx;
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  text-align: center;
+  color: white;
+  background-color: red;
+}

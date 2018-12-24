@@ -1,0 +1,25 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="feedback">
+  <view class="commoninput">
+    <input type="text" class="input" maxlength='20' placeholder-class='commonplc' placeholder='请输入如你的姓名'/>
+  </view>
+
+  <view class="commoninput">
+    <input type="number" class="input" maxlength='11' placeholder-class='commonplc' placeholder='请输入如你的电话'/>
+  </view>
+
+  <view class="score">
+    <view class="scoretitle">
+      <view>评分<text>*</text></view>
+      <block wx:for="{{scoredata}}" wx:key="{{index}}">
+        <image bindtap="score" data-order="{{index}}" src="{{ item == 1? './img/good_star.png' : './img/star.png' }}" class="scoreimg"></image>
+      </block>
+    </view>
+  </view>
+
+  <view class="scoreinput">
+    <textarea placeholder='请输入你的意见' placeholder-class='textplc'></textarea>
+  </view>
+
+  <view class="submitbtn">提交意见</view>
+</view>

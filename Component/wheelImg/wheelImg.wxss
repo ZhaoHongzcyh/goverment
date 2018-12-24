@@ -1,0 +1,5 @@
+/* Component/wheelImg/wheelImg.wxss */
+.wheelImg{
+  width: 100%;
+  height: 360rpx;
+}

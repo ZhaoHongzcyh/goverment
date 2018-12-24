@@ -1,0 +1,23 @@
+<!--Component/articleList.wxml-->
+<view class="articleList" bindtap="click">
+  <view class="articleLeft">
+    <view class="articleTitle">{{title}}</view>
+    <view class="articleBaseInfo">
+      <view class="commonBase">{{dataTime}}</view>
+      <view class="commonBase">
+        <image class="commonImg" src="{{ resolveSrc + 'readnum.png'}}"></image>
+        {{readNum}}
+      </view>
+      <view class="commonBase">
+        <image src="{{ resolveSrc + 'goodup.png'}}" class="commonImg"></image>
+        {{thumbsUpNum}}
+      </view>
+      <view class="commonBase">
+        <image src="{{ resolveSrc + 'reply.png'}}" class="commonImg"></image>
+        {{replyNum}}
+      </view>
+    </view>
+  </view>
+  <view class="articleRight" style="background-image:url( {{src}} )">
+  </view>
+</view>

@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/connectUs/connectus",
+    "pages/personalCenter/personalcenter",
+    "pages/personalCenter/aboutus/aboutus",
+    "pages/personalCenter/makeSmallProgram/makesmallprogram",
+    "pages/personalCenter/myconnection/myconnection",
+    "pages/articleClass/articleclass",
+    "pages/articledetail/articledetail",
+    "pages/feedback/feedback"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#4963C4",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "iconPath": "/assets/tabbar/home.png",
+        "selectedIconPath": "/assets/tabbar/home-active.png",
+        "pagePath": "pages/index/index",
+        "text": "新闻动态"
+      },
+      {
+        "iconPath": "/assets/tabbar/connect.png",
+        "selectedIconPath": "/assets/tabbar/connect-active.png",
+        "pagePath": "pages/connectUs/connectus",
+        "text": "联系我们"
+      },
+      {
+        "iconPath": "/assets/tabbar/person.png",
+        "selectedIconPath": "/assets/tabbar/person-active.png",
+        "pagePath": "pages/personalCenter/personalcenter",
+        "text": "个人中心"
+      }
+    ]
+  }
+}

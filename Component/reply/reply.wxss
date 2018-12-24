@@ -1,0 +1,54 @@
+/* Component/reply/reply.wxss */
+.comment{
+  background-color: white;
+}
+
+.commenthead{
+  display: flex;
+  align-items: center;
+  height: 72rpx;
+}
+
+.userphoto{
+  width: 72rpx;
+  height: 72rpx;
+  margin-left: 30rpx;
+  border-radius: 50%;
+}
+
+.username{
+  color: #666;
+  font-size: 26rpx;
+  margin-left: 10rpx;
+}
+
+.time{
+  color: #666;
+  font-size: 26rpx;
+  margin-right: 32rpx;
+  flex: 3;
+  text-align: right;
+}
+
+.commentContent{
+  width: 580rpx;
+  margin: auto;
+  margin-top: 10rpx;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.reply{
+  padding: 26rpx;
+  margin: auto;
+  margin-top: 32rpx;
+  width: 528rpx;
+  color: #333;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  background-color: #DBDBDB;
+}
+
+.replyContent{
+  margin-top:  16rpx;
+}

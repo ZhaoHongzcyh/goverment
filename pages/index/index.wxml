@@ -1,0 +1,20 @@
+ <!-- 广告轮播图 -->
+<wheelimg whileImg="{{ AdvertisementImgUrls }}" bind:click="getimg"/>
+<view class="govemenu">
+  <govmenu bind:click="toArticleClass"/>
+</view>
+
+<block wx:for="{{article}}">
+  <articlelist
+    data-id="{{ item.summary.id }}" 
+    title="{{item.summary.desciption}}" 
+    dataTime="{{ item.summary.datetime }}"
+    readNum="{{ item.summary.visitNum }}"
+    thumbsUpNum="{{ item.summary.likeNum }}"
+    replyNum="{{ item.summary.commentNum }}"
+    src="{{ item.summary.imgUrl }}"
+    bind:click="readArticle"/>
+</block>
+
+<!-- 浮动区域 -->
+<suspen/>

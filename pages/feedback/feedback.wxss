@@ -1,0 +1,68 @@
+/* pages/feedback/feedback.wxss */
+.commoninput{
+  width: 660rpx;
+  height: 80rpx;
+  margin: auto;
+  margin-top: 50rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #999999;
+}
+
+.input{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.commonplc{
+  font-size: 28rpx;
+}
+
+/* 评分区域 */
+.score{
+  width: 660rpx;
+  margin: auto;
+  margin-top: 56rpx;
+  display: flex;
+}
+
+.scoretitle{
+  color: #333;
+  font-size: 28rpx;
+  display: flex;
+}
+
+text{
+  color: red;
+  font-size: 28rpx;
+}
+
+.scoreimg{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 22rpx;
+}
+
+/* 意见反馈区 */
+.scoreinput{
+  width: 660rpx;
+  height: 350rpx;
+  margin: auto;
+  margin-top: 54rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #999;
+}
+
+.textplc{
+  font-size: 28rpx;
+}
+.submitbtn{
+  width: 660rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  margin: auto;
+  margin-top: 88rpx;
+  font-size: 36rpx;
+  text-align: center;
+  color: white;
+  background-color: #4963C4;
+}

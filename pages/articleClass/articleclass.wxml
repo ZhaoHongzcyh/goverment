@@ -1,0 +1,33 @@
+<!--pages/articleClass/articleclass.wxml-->
+<view>
+  <!-- head -->
+    <swiper 
+    class="swiper"
+    bindchange="changeCurrent" 
+    duration="1500" indicator-color="rgb(240,210,211)" 
+    indicator-active-color="black"
+  >
+  <block wx:for="{{articleType.length/5}}">
+    <swiper-item>
+      <view class="titlelist">
+        <view 
+          wx:for="{{5}}" wx:for-item="c"
+          class="singletitle" 
+          wx:if="{{ articleType[(item+1)*5 - (5-c)].title }}" 
+          data-title="{{ articleType[( item + 1 ) * 5 - ( 5 - c )].title }}" 
+          bindtap="click"
+        >
+            <view class="title">{{ articleType[( item + 1 ) * 5 - ( 5 - c )].title }}</view>
+            <view class="line {{ articleType[( item + 1 ) * 5 - ( 5 - c )].select? 'linecolor':'' }}"></view>
+          
+        </view>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 文章列表 -->
+<view>
+  <articlelist/>
+</view>
+</view>

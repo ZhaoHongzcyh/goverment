@@ -1,0 +1,51 @@
+/* pages/makeSmallProgram/makesmallprogram.wxss */
+.smallprogramIcon{
+  width: 100%;
+  height: 360rpx;
+}
+.codetitle{
+  margin-top: 42rpx;
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 32rpx;
+}
+
+.inputInfo{
+  margin: auto;
+  margin-top: 32rpx;
+  width: 660rpx;
+  height: 80rpx;
+  border: 2rpx solid #999;
+  border-radius: 4rpx;
+}
+
+.input{
+  height: 100%;
+}
+
+.inputplc{
+  font-size: 28rpx;
+}
+
+.textarea{
+  margin: auto;
+  margin-top: 36rpx;
+  width: 660rpx;
+  height: 280rpx;
+  border: 2rpx solid #999;
+}
+
+.submit{
+  margin: auto;
+  margin-top: 50rpx;
+  width: 660rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 36rpx;
+  letter-spacing: 5rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  color: white;
+  background-color: #4963C4;
+}

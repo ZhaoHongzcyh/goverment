@@ -1,0 +1,27 @@
+<!--Component/articlereply/articlereply.wxml-->
+  <view class="footer">
+    <view class="footerselect" bindtap="share">
+      <image src="./img/share.png" class="footerimg"></image>
+      <view class="footertxt">分享</view>
+    </view>
+    <view class="footerselect" bindtap="collect">
+      <image src="{{ collectStatus == 0? './img/collection.png' : './img/collection-active.png'  }}" class="footerimg"></image>
+      <view class="footertxt">收藏</view>
+    </view>
+    <view class="footerselect" bindtap="clickup">
+      <image src="{{ clickupStatus == 0? './img/goodup.png' : './img/goodup-active.png' }}" class="footerimg"></image>
+      <view class="footertxt">{{ likenum }}</view>
+    </view>
+    <view class="footerselect">
+      <image src="./img/message.png" class="footerimg"></image>
+      <view class="footertxt">{{ replynum }}</view>
+    </view>
+    <view class="reply">
+      <input type="text" 
+        maxlength='100' 
+        class="input" 
+        placeholder-class='inputplc'
+        bindblur='sendreply' 
+        placeholder='说点什么吧'/>
+    </view>
+  </view>

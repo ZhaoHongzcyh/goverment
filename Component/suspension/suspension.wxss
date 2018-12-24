@@ -1,0 +1,27 @@
+/* Component/suspension/suspension.wxss */
+/* 浮动区域 */
+.suspenarea{
+  position: fixed;
+  width: 140rpx;
+  right: 10rpx;
+  bottom: 100rpx;
+}
+.commonsus{
+  width: 120rpx;
+  height: 120rpx;
+  font-size: 25rpx;
+  text-align: center;
+  margin: 20rpx;
+  color: #FF9914;
+  border: 1rpx solid #FF9914;
+  background-color: white;
+}
+.suspenimg{
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 20rpx;
+}
+.test{
+  color: white;
+  background-color: #FF9914;
+}

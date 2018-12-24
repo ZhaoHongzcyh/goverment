@@ -1,0 +1,20 @@
+<!--pages/connectUs/connectus.wxml-->
+<view class="connectus">
+  <view class="singlelist">
+    <view class="commonLeft">联系电话</view>
+    <view class="commonRight">010-66666</view>
+  </view>
+  <view class="singlelist">
+    <view class="commonLeft">官方邮箱</view>
+    <view class="commonRight">ABC@xxx.com</view>
+  </view>
+  <view class="singlelist">
+    <view class="commonLeft">办公地址</view>
+    <view class="commonRight">云南省昭通市昭阳区公园路45号</view>
+  </view>
+</view>
+
+<!-- 地图区域 -->
+    <map  scale="15" class="map">
+
+    </map>

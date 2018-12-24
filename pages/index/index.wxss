@@ -1,0 +1,12 @@
+page{
+  background-color: #F5F5F5;
+}
+.govemenu{
+  position: relative;
+  height: 224rpx;
+  margin-bottom: 20rpx;
+  padding-top: 30rpx;
+  background-color: white;
+}
+
+

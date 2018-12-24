@@ -1,0 +1,9 @@
+<!--pages/aboutus/aboutus.wxml-->
+<view class="aboutus">
+  <image class="usImg" src=""></image>
+  <view>横鑫豪态</view>
+  <view>用心呈现，品质家具</view>
+  <view>
+    Nullam tempor tortor in cursus gravida. Sed fermentum quam eu libero condimentum tincidunt. Suspendisse potenti. Sed consectetur, nunc sit amet auctor venenatis, eros lectus interdum urna, et gravida augue augue in purus. Fusce fringilla lectus vitae lacus vulputate, sed feugiat felis congue. Nunc vitae consequat felis, tincidunt vehicula mauris. Fusce nibh velit, porta a facilisis vel, semper ut justo
+  </view>
+</view>

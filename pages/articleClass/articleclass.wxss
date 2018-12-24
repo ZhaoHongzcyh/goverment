@@ -1,0 +1,40 @@
+/* pages/articleClass/articleclass.wxss */
+.swiper{
+  height: 100rpx;
+}
+
+.titlelist{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.singletitle{
+  position: relative;
+  width: 160rpx;
+  height: 100rpx;
+  color: #333;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.title{
+  position: relative;
+  height: 28rpx;
+  margin-top: 20rpx;
+  line-height: 28rpx;
+}
+
+.line{
+  margin: auto;
+  margin-top: 20rpx;
+  width: 100rpx;
+  height: 6rpx;
+  line-height: 36rpx;
+  font-weight: 600;
+}
+
+.linecolor{
+  font-weight: 600;
+  background: -webkit-linear-gradient(#E71600, #EA7F00);
+}

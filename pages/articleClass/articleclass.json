@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "政务官网",
+  "usingComponents": {
+    "articlelist": "/Component/articleList/articleList"
+  }
+}

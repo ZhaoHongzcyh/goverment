@@ -1,0 +1,11 @@
+<!--Component/suspension/suspension.wxml-->
+<view class="suspenarea">
+  <view class="commonsus" bindtap="feedback">
+    <image src="./img/feedback.png" class="suspenimg"></image>
+    <view>意见反馈</view>
+  </view>
+  <view class="commonsus test">
+    <image src="./img/test.png" class="suspenimg"></image>
+    <view>我要测评</view>
+  </view>
+</view>

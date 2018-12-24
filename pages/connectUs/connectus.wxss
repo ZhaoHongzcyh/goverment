@@ -1,0 +1,31 @@
+/* pages/connectUs/connectus.wxss */
+.connectus{
+  position: fixed;
+  top: 0rpx;
+  width: 100%;
+  height: 100%;
+}
+.singlelist{
+  display: flex;
+  align-items: center;
+  height: 110rpx;
+  font-size: 28rpx;
+  border-bottom: 2rpx solid #F5F5F5;
+}
+.commonLeft{
+  width: 200rpx;
+  font-size: 30rpx;
+  margin-left: 38rpx;
+  color: #333;
+}
+.commonRight{
+  flex: 2;
+  margin-right: 20rpx;
+  text-align: right;
+}
+.map{
+  position: fixed;
+  bottom: 0rpx;
+  height: calc(100% - 330rpx);
+  width: 100%;
+}

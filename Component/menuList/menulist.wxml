@@ -1,0 +1,37 @@
+<!--Component/menuList/menulist.wxml-->
+<view class="menulist">
+  <swiper 
+    class="swiper"
+    bindchange="changeCurrent" 
+    current="{{current}}"
+    duration="1500" indicator-color="rgb(240,210,211)" 
+    indicator-active-color="black"
+  >
+  <block wx:for="{{menu.length/5}}">
+    <swiper-item class="turnImgSwip">
+      <block wx:for="{{5}}" wx:for-item="c">
+        <view 
+          class="singlegov" 
+          wx:if="{{menu[(item+1)*5 - (5-c)].title}}" 
+          data-title="{{ menu[( item + 1 ) * 5 - ( 5 - c )].title }}" 
+          bindtap="click"
+        >
+          <image src="{{ menu[( item + 1 ) * 5 - ( 5 - c )].src }}" class="govimg"></image>
+          <view>{{ menu[( item + 1 ) * 5 - ( 5 - c )].title }}</view>
+        </view>
+      </block>
+    </swiper-item>
+  </block>
+</swiper>
+
+  <view class="line">
+    <block wx:for="{{menu.length/5}}">
+      <view 
+        class="wheelline {{ current == index? 'openline':'' }}" 
+        data-current="{{index}}"
+        bindtap="changeSwip"
+      >
+      </view>
+    </block>
+  </view>
+</view>

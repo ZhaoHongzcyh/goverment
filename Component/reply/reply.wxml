@@ -1,0 +1,17 @@
+<!--Component/reply/reply.wxml-->
+<view class="comment">
+  <view class="commenthead">
+    <image src="{{userphoto}}" class="userphoto"></image>
+    <view class="username">{{username}}</view>
+    <view class="time">{{time}}</view>
+  </view>
+  <view class="commentContent">
+    {{ comment }}
+  </view>
+  <view class="reply">
+    <view class="writerReply">作者回复</view>
+    <view class="replyContent">
+      {{ reply }}
+    </view>
+  </view>
+</view>

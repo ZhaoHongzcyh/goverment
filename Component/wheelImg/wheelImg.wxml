@@ -1,0 +1,9 @@
+<!--Component/wheelImg/wheelImg.wxml-->
+<swiper indicator-dots="{{true}}"
+  autoplay="{{true}}" interval="3000" duration="1500" indicator-color="rgb(240,210,211)" indicator-active-color="white">
+  <block wx:for="{{whileImg}}" wx:key="{{index}}">
+    <swiper-item class="turnImgSwip">
+      <image src="{{item}}" bindtap="readAdver"  class="wheelImg" bindtap="click"/>
+    </swiper-item>
+  </block>
+</swiper>
