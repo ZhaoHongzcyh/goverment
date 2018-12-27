@@ -1,10 +1,28 @@
 <!--pages/personalCenter/myconnection/myconnection.wxml-->
 <view class="myconnection">
-  <scroll-view class="single" scroll-x="{{true}}">
-    <view class="singlelist">
-      <articlelist class="article"/>
-      <view class="delbtn">取消收藏</view>
-    </view>
+  <scroll-view class="single" scroll-x="{{true}}" wx:for="{{ article }}">
+      <view class="singlelist">
+        <articlelist
+          class="article"
+          data-id="{{ item.summary.id }}" 
+          title="{{item.summary.desciption}}" 
+          dataTime="{{ item.summary.datetime }}"
+          readNum="{{ item.summary.visitNum }}"
+          thumbsUpNum="{{ item.summary.likeNum }}"
+          replyNum="{{ item.summary.commentNum }}"
+          src="{{ item.summary.imgUrl }}"
+          bind:click="readArticle"/>
+        <view class="delbtn" bindtap="cancelCollection" data-articleid="{{ item.summary.id }}">取消收藏</view>
+      </view>
   </scroll-view>
+
+  <!-- 无收藏文章 -->
+  <view wx:if="{{ article.length == 0 }}" class="offarticle">
+    <loaderr bind:repeat="getMyCollectArticle" infotxt="暂无收藏文章" eventtxt="刷新一次"/>
+  </view>
+  <!-- 无收藏文章end -->
 </view>
+
+<!-- 文章加载等待模态框 -->
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>
 

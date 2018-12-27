@@ -1,3 +1,6 @@
+
+
+
 // pages/personalCenter/personalcenter.js
 Page({
 
@@ -36,10 +39,16 @@ Page({
     })
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage: function (ops) {
+    let foreardObj = {
+      title: "个人中心",
+      path: "/pages/personalCenter/personalCenter",
+      success: (r) => {
+        console.log("转发成功");
+        console.log(r);
+        api.forwardStatic(app)
+      }
+    };
+    return foreardObj;
+  },
 })

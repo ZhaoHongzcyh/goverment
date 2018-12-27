@@ -1,11 +1,23 @@
 <!--pages/feedback/feedback.wxml-->
 <view class="feedback">
   <view class="commoninput">
-    <input type="text" class="input" maxlength='20' placeholder-class='commonplc' placeholder='请输入如你的姓名'/>
+    <input 
+      value="{{ nickname }}" 
+      type="text" class="input" 
+      maxlength='20'
+      bindinput='getUserName' 
+      placeholder-class='commonplc' 
+      placeholder='请输入如你的姓名'/>
   </view>
 
   <view class="commoninput">
-    <input type="number" class="input" maxlength='11' placeholder-class='commonplc' placeholder='请输入如你的电话'/>
+    <input 
+      value="{{ phone }}" 
+      type="number" class="input" 
+      maxlength='11'
+      bindinput='getUserPhone' 
+      placeholder-class='commonplc' 
+      placeholder='请输入如你的电话'/>
   </view>
 
   <view class="score">
@@ -18,8 +30,15 @@
   </view>
 
   <view class="scoreinput">
-    <textarea placeholder='请输入你的意见' placeholder-class='textplc'></textarea>
+    <textarea 
+      placeholder='请输入你的意见' 
+      placeholder-class='textplc'
+      bindinput='getUserMsg' 
+      value="{{ content }}"></textarea>
   </view>
 
-  <view class="submitbtn">提交意见</view>
+  <view class="submitbtn" bindtap="checkFeedInfo">提交意见</view>
 </view>
+
+<!-- 意见反馈进度模态框 -->
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>

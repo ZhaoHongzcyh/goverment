@@ -29,8 +29,36 @@ const request = function (header={},body={},method='POST',url,format='json',bool
   })
 }
 
+// 祛除所有空格，返回处理之后的内容
+const strFormat = function (str){
+  if(str == null){
+    str = "";
+  }
+  if ((typeof str) != "string"){
+    throw new Error('this function can only handle strings');
+  }
+  else{
+    str = str.replace(/\s/g, "");
+    return str;
+  }
+}
+
+// 转发数据统计
+const forwardStatic = function (app) {
+  let address = app.ip + "weiXin/data/updateSharePv/" + app.appid;
+  let body = {
+    appId: app.appid
+  };
+  request({}, body, "POST", address, "json", false).then( res => {
+    console.log("小程序访问趋势信息");
+    console.log(res);
+  } )
+}
+
 module.exports = {
   formatTime: formatTime,
-  request: request
+  request: request,
+  strFormat: strFormat,
+  forwardStatic: forwardStatic
 }
 

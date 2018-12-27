@@ -4,18 +4,31 @@
     <image src="./img/banner.png" class="smallprogramIcon"></image>
   </view>
   <view>
-    <view class="codetitle">留下电话好嘛，客服马上联系你</view>
+    <view class="codetitle">留下电话号码，客服马上联系你</view>
     <view class="inputInfo">
-      <input type='text' class="input" placeholder-class='inputplc' maxlength='20' placeholder='请输入您的姓名*'/>
+      <input 
+        type='text'
+        bindinput="getUserName"
+        value="{{ username }}" 
+        class="input" placeholder-class='inputplc' 
+        maxlength='20' placeholder='请输入您的姓名*'/>
     </view>
 
     <view class="inputInfo">
-      <input type='number' class="input" placeholder-class='inputplc' maxlength='11' placeholder='请输入您的电话*'/>
+      <input 
+        bindinput="getUserPhone"
+        value="{{ phone }}"
+        type='number' class="input" 
+        placeholder-class='inputplc' 
+        maxlength='11' placeholder='请输入您的电话*'/>
     </view>
 
     <view>
-      <textarea placeholder='请填写你的留言*' class="textarea"></textarea>
+      <textarea value="{{ reply }}" placeholder='请填写你的留言*' bindinput="getUserReply" class="textarea"></textarea>
     </view>
   </view>
-  <view class="submit">提交</view>
+  <view class="submit" bindtap="submitInfo">提交</view>
 </view>
+
+<!-- 模态框 -->
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>

@@ -1,0 +1,19 @@
+<!--测评列表-->
+<view class="evaluation">
+  <block wx:for="{{ evaluatList }}">
+    <view class="singlelist">
+      <view class="title">2018年上半年群众安全感满意度测评</view>
+      <image class="arrow" src="./img/narrow.png"/>
+    </view>
+  </block>
+</view>
+
+<!-- 测评列表查询模态框 -->
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>
+
+<!-- 测评列表加载异常情况 -->
+<loaderr
+  class="loaderror"
+  bind:repeat="getEvaluationList" 
+  infotxt="暂无测评内容" eventtxt="刷新试试" 
+  wx:if="{{ isRepeatReq }}"/>

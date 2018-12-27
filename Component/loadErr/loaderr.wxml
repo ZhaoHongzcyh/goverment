@@ -1,0 +1,8 @@
+
+<view class="loadinfo">
+  <image src="/Component/loadErr/img/loaderr.png" class="loaderr"></image>
+  <view class="titletxt">
+    <view>{{ infotxt }}</view>
+    <view class="repeatreq" bindtap="repeat" wx:if="{{ isShowEvent }}">{{ eventtxt }}</view>
+  </view>
+</view>

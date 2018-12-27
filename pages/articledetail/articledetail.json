@@ -2,6 +2,7 @@
   "navigationBarTitleText": "内容详情",
   "usingComponents": {
     "comment": "/Component/reply/reply",
-    "footer": "/Component/articlereply/articlereply"
+    "footer": "/Component/articlereply/articlereply",
+    "load": "/Component/load/load"
   }
 }

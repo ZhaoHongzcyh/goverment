@@ -18,3 +18,9 @@
 
 <!-- 浮动区域 -->
 <suspen/>
+
+<!-- 加载等待区域 -->
+<load isLoad="{{ isLoad }}"/>
+
+<!-- 文章加载异常情况 -->
+<loaderr bind:repeat="getArticle" wx:if="{{ isRepeatReq }}"/>

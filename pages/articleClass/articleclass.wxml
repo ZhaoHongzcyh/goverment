@@ -6,16 +6,20 @@
     bindchange="changeCurrent" 
     duration="1500" indicator-color="rgb(240,210,211)" 
     indicator-active-color="black"
+    current="{{ current }}"
   >
-  <block wx:for="{{articleType.length/5}}">
+  <block wx:for="{{articleType.length/5}}" wx:for-index="numindex">
     <swiper-item>
       <view class="titlelist">
         <view 
           wx:for="{{5}}" wx:for-item="c"
+          data-current="{{}}"
           class="singletitle" 
           wx:if="{{ articleType[(item+1)*5 - (5-c)].title }}" 
           data-title="{{ articleType[( item + 1 ) * 5 - ( 5 - c )].title }}" 
-          bindtap="click"
+          bindtap="switchArticleType"
+          data-current="{{ numindex }}"
+          data-index="{{ (item+1) * 5 - ( 5-c ) }}"
         >
             <view class="title">{{ articleType[( item + 1 ) * 5 - ( 5 - c )].title }}</view>
             <view class="line {{ articleType[( item + 1 ) * 5 - ( 5 - c )].select? 'linecolor':'' }}"></view>

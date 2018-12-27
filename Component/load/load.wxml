@@ -1,0 +1,11 @@
+<!-- 等待加载框 -->
+<view class="model" wx:if="{{ isLoad }}">
+  <view class="circleout">
+    <view class="circletxt">
+      {{ loadtxt }}
+      <text class="load1">.</text>
+      <text class="load2">.</text>
+      <text class="load3">.</text>
+    </view>
+  </view>
+</view>

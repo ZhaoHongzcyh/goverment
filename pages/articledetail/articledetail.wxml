@@ -1,6 +1,6 @@
 <!--pages/articledetail/articledetail.wxml-->
 <view class="commont">
-  <view class="articleinfo">
+  <scroll-view scroll-y="{{ true }}" bindscrolltolower="loadMoreReply"	 class="articleinfo">
     <view class="head">
       <view class="title">{{ title }}</view>
       <view class="readnum_time">
@@ -31,7 +31,7 @@
           comment="{{ item.commentContent }}"/>
       </block>
     </view>
-  </view>
+  </scroll-view>
 
   <!-- 底部评论区 -->
   <footer
@@ -45,3 +45,6 @@
     bind:reply="sendReply"
   />
 </view>
+
+<!-- 加载提示模态框 -->
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>

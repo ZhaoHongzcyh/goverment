@@ -22,6 +22,12 @@ Component({
       wx.navigateTo({
         url: '/pages/feedback/feedback',
       })
+    },
+
+    evaluat: function () {
+      wx.navigateTo({
+        url: '/pages/evaluation/evaluation',
+      })
     }
   }
 })

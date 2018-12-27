@@ -27,7 +27,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    
+    replyContent:""
   },
 
   /**
@@ -48,6 +48,9 @@ Component({
 
     sendreply: function (e) {//发送评论
       this.triggerEvent("reply", { load: e });
+      this.setData({
+        replyContent:""
+      })
     }
   }
 })

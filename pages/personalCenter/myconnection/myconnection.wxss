@@ -5,9 +5,11 @@
   width: 125%;
   align-items: center;
 }
+
 .article{
   width: calc(100% - 180rpx);
 }
+
 .delbtn{
   width: 180rpx;
   height: 100%;
@@ -17,4 +19,9 @@
   text-align: center;
   color: white;
   background-color: red;
+}
+
+/* 暂无收藏文章 */
+.offarticle{
+  margin-top: 30%;
 }

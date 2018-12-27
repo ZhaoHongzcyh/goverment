@@ -1,0 +1,88 @@
+
+.model{
+  position: fixed;
+  z-index: 100;
+  top: 0rpx;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.circleout{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -100rpx;
+  margin-top: -100rpx;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  border: 20rpx solid white;
+  border-top: 20rpx solid #4963C4;
+  animation: loading 4s ease infinite;
+}
+
+.circletxt{
+  text-align: center;
+  line-height: 200rpx;
+  color: white;
+  font-size: 28rpx;
+  overflow: hidden;
+  animation: txtloading 4s ease infinite;
+}
+
+.load1{
+  animation: ellipsis1 3s ease infinite;
+}
+.load2{
+  animation: ellipsis2 2s ease infinite;
+}
+.load3{
+  animation: ellipsis3 1s ease infinite;
+}
+
+@keyframes ellipsis1{
+  from {
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes ellipsis2{
+  from {
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes ellipsis3{
+  from {
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes txtloading{
+  from{
+    transform: rotateZ(0deg);
+  }
+  to{
+    transform: rotateZ(-360deg);
+  }
+}
+
+@keyframes loading{
+  from{
+    transform: rotateZ(0deg);
+  }
+  to{
+    transform: rotateZ(360deg);
+  }
+
+}

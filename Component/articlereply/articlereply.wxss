@@ -10,6 +10,7 @@
   background-color: white;
 }
 .footerselect{
+  position: relative;
   text-align: center;
   margin-left: 30rpx;
 }
@@ -39,4 +40,12 @@
 
 .inputplc{
   font-size: 26rpx;
+}
+.sharebtn{
+  position: absolute;
+  top: 0rpx;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  border: 1rpx solid red;
 }

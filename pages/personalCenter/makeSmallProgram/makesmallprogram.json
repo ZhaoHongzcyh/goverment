@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "小程序开发咨询",
-  "usingComponents": {}
+  "usingComponents": {
+    "load": "/Component/load/load"
+  }
 }

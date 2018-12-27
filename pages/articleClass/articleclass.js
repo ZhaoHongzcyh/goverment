@@ -12,7 +12,8 @@ Page({
       { title: '通知公告', type: 3, select: false },
       { title: '乡镇动态', type: 4, select: false },
       { title: '招商引资', type: 5, select: false }
-    ]
+    ],
+    current: 0 //当前所在滑块的index
   },
 
   onLoad: function (options) {
@@ -25,16 +26,51 @@ Page({
     let articleType = this.data.articleType;
     articleType.map( (item,index)=>{
       item.select = item.title == options.info? true : false
+      if( item.select ){
+        this.initCurrent(index);
+      }
     } );
-    this.setData({ articleType })
+    this.setData({ articleType });
+    
   },
 
-  onShow: function () {
+  // 通过index判断滑块的current
+  initCurrent: function ( index ) {
+    let articleType = this.data.articleType;
+    let current = 0;
+    if( index > 4){
+      console.log("大于4")
+      current = Math.ceil( index/5 );
+    }
+
+    this.setData({ current })
+  },
+
+  onShow: function ( ) {
 
   },
 
+  // 用户滑动文章分类列表
+  changeCurrent: function (e) {
+    console.log(e);
+    let current = e.detail.current;
+    this.setData({ current });
+  },
 
-
+  // 用户切换文章类型
+  switchArticleType: function (e) {
+    let current = e.currentTarget.dataset.current;
+    let index =e.currentTarget.dataset.index;
+    console.log(e)
+    let articleType = this.data.articleType;
+    articleType.map( (item,num) => {
+      item.select = false;
+      if(index == num){
+        item.select = true;
+      }
+    } );
+    this.setData({ articleType, current})
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -53,6 +89,17 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    let articleType = this.data.articleType;
+    let title = null;
+    articleType.map( (item,index) => {
+      if(item.select){
+        title = item.title
+      }
+    } )
+    let foreardObj = {
+      title: title,
+      path: "/pages/articleClass/articleclass?info=" + this.data.articleid
+    };
+    return foreardObj;
   }
 })

@@ -1,0 +1,22 @@
+
+.loadinfo{
+  text-align: center;
+}
+
+.loaderr{
+  width: 320rpx;
+  height: 320rpx;
+}
+
+.titletxt{
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.repeatreq{
+  color: #4963C4;
+  margin-left: 10rpx;
+}

@@ -1,8 +1,9 @@
 <!--Component/articlereply/articlereply.wxml-->
   <view class="footer">
-    <view class="footerselect" bindtap="share">
+    <view class="footerselect">
       <image src="./img/share.png" class="footerimg"></image>
       <view class="footertxt">分享</view>
+      <button class="sharebtn" open-type='share' type="default"></button>
     </view>
     <view class="footerselect" bindtap="collect">
       <image src="{{ collectStatus == 0? './img/collection.png' : './img/collection-active.png'  }}" class="footerimg"></image>
@@ -21,7 +22,8 @@
         maxlength='100' 
         class="input" 
         placeholder-class='inputplc'
-        bindblur='sendreply' 
+        bindblur='sendreply'
+        value="{{replyContent}}" 
         placeholder='说点什么吧'/>
     </view>
   </view>

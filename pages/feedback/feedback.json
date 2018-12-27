@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "意见反馈",
-  "usingComponents": {}
+  "usingComponents": {
+    "load": "/Component/load/load"
+  }
 }

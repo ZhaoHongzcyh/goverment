@@ -9,9 +9,10 @@
     "pages/personalCenter/myconnection/myconnection",
     "pages/articleClass/articleclass",
     "pages/articledetail/articledetail",
-    "pages/feedback/feedback"
-    
+    "pages/feedback/feedback",
+    "pages/evaluation/evaluation"
   ],
+  "enablePullDownRefresh": false,
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

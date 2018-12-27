@@ -1,66 +1,53 @@
 // pages/aboutus/aboutus.js
+const app = getApp();
+const api = require("../../../utils/util.js");
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    baseInfo:null //店铺基础信息
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-
+    this.getShopInfo()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  onShareAppMessage: function (ops) {
+    let foreardObj = {
+      title: "关于我们",
+      path: "/pages/personalCenter/aboutus/aboutus",
+      success: (r) => {
+        console.log("转发成功");
+        console.log(r);
+        api.forwardStatic(app)
+      }
+    };
+    return foreardObj;
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  // 获取店铺详细信息
+  getShopInfo: function () {
+    let address = app.ip + "shop/app/find/" + app.appid;
+    let body = {
+      appId: app.appid
+    };
+    api.request({}, body, "POST", address, "json", false).then(res => {
+      console.log(res);
+      if(res.data.code == 200 && res.data.result){
+        let baseInfo = res.data.data.baseInfo;
+        this.setData({
+          baseInfo
+        })
+      }
+    }).catch(e => {
 
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    })
   }
 })

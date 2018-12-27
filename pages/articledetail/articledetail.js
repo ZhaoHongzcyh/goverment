@@ -14,11 +14,14 @@ Page({
     time:null, //发表日期
     title:null, //文章标题
     visitNum:0, //文章阅读量
-    pageIndex:0, //评论的当前页码
+    pageIndex:1, //评论的当前页码
     pageSize: 10, //每一页的评论数量
     collectStatus: 0,//文章是否被收藏
     clickupStatus: 0, //文章点赞情况
-    replyList:[] //文章评论情况
+    replyList:[], //文章评论情况
+    isLoadEnd: false,//评论是否已经加载完毕
+    isLoad: true, //模态框，是否正在加载中
+    loadtxt: "loading" //模态框提示文字
   },
 
   onLoad: function (options) {
@@ -30,6 +33,42 @@ Page({
 
   onShow: function () {
     
+  },
+
+
+  // 隐藏加载模态框
+  hideLoad: function () {
+    this.setData({
+      isLoad: false,
+      loadtxt: "loading"
+    })
+  },
+
+  // 加载结果提醒
+  layOutTxt: function (txt) {
+    this.setData({
+      isLoad: true,
+      loadtxt: txt
+    })
+    setTimeout(() => {
+      this.hideLoad();
+    }, 2000)
+  },
+
+  // 显示加载模态框
+  showLoad: function () {
+    this.setData({
+      isLoad: true,
+      loadtxt: "loading"
+    })
+  },
+
+  // 显示提示信息
+  showModelTxt: function (txt) {
+    this.setData({
+      loadtxt: txt,
+      isLoad: true
+    })
   },
 
   // 添加阅读量
@@ -48,6 +87,7 @@ Page({
 
   // 获取文章内容
   getArticleContent: function (articleid) {
+    this.showLoad();
     let address = app.ip + "shop/article/find/" + articleid;
     let body = {
       id: articleid,
@@ -57,6 +97,7 @@ Page({
       console.log("文章详细信息");
       console.log(res);
       if(res.data.code == 200 && res.data.result){
+        this.hideLoad();
         let data = res.data.data;
         let member = res.data.data.member;
         let articleList = res.data.data.articleList;
@@ -76,7 +117,7 @@ Page({
         this.addReadNum(articleid); //增加阅读量
       }
       else{
-        console.log("文章内容获取失败"); //是否有弹框？或者异常页面
+        this.layOutTxt("文章读取失败");
       }
     } )
   },
@@ -100,16 +141,68 @@ Page({
         list.map(( item, index ) => {
           item.time = item.createDate.split("T")[0]
         } )
+        let checkEnd = false;//评论是否加载完毕
+        if(list.length < this.data.pageSize){
+          checkEnd = true;
+        }
         this.setData({
-          replyList: list
+          replyList: list,
+          isLoadEnd: checkEnd
         })
       }
     } )
   },
 
+  // 加载更多评论
+  loadMoreReply: function () {
+    this.showModelTxt("加载更多");
+    let address = app.ip + "shop/article/findPageList4Comment";
+    let body = {
+      appId: app.appid,
+      pageIndex: this.data.pageIndex + 1,
+      pageSize: this.data.pageSize,
+      openId: app.openid,
+      introId: this.data.articleid
+    };
+    if (this.data.isLoadEnd ){
+      this.hideLoad();
+      return false;
+    }
+    api.request({}, body, "POST", address, "application", false).then(res => {
+      console.log(res);
+      this.setData({
+        pageIndex: body.pageIndex
+      })
+      if( res.data.code == 200 && res.data.result ){
+        this.hideLoad();
+        let list = res.data.data.list;
+        let replyList = this.data.replyList;
+        let checkEnd = false;
+        list.map((item, index) => {
+          item.time = item.createDate.split("T")[0]
+        })
+        if( list.length < this.data.pageSize && list.length != 0 ) {
+          checkEnd = true;//评论已经加载完毕
+        }
+        replyList = replyList.concat( list );
+        this.setData({
+          pageIndex: list.length == 0? body.pageIndex - 1 : body.pageIndex,
+          isLoadEnd: checkEnd,
+          replyList: replyList
+        })
+      }
+      else{
+        this.layOutTxt("评论加载失败");
+      }
+    } ).catch( e=> {
+      this.layOutTxt("评论加载失败");
+    })
+  },
+
   // 文章分享
   share: function (e) {
     console.log(e);
+    wx.showShareMenu();
   },
 
   // 收藏文章
@@ -131,6 +224,9 @@ Page({
           collectStatus: body.status,
           member: member
         })
+      }
+      else{
+        this.layOutTxt("文章收藏失败");
       }
     } )
 
@@ -163,6 +259,9 @@ Page({
           summary: summary
         })
       }
+      else{
+        this.layOutTxt("点赞失败");
+      }
     } )
   },
 
@@ -170,7 +269,11 @@ Page({
   sendReply: function (e) {
     console.log(e);
     e = e.detail.load;
-    let commentContent = e.detail.value;
+    let commentContent = api.strFormat( e.detail.value );
+    if ( commentContent == "" ){
+      this.layOutTxt("评论为空");
+      return false;
+    }
     let address = app.ip + "shop/article/comment";
     let body = {
       introId: this.data.articleid,
@@ -184,20 +287,34 @@ Page({
       if(res.data.code == 200 && res.data.result){
         let replyList = this.data.replyList;
         let d = new Date();
-        let time = d.getFullYear() + "-" + d.getMonth() + 1 + "-" + d.getDate();
+        let time = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
         let reply = {
           time: time,
           commentContent: body.commentContent,
         }
-        replyList.push(reply);
+        replyList.unshift(reply);
         this.setData({
           replyList
         })
         console.log(time)
       }
       else{
-
+        this.layOutTxt("评论失败");
       }
     } )
+  },
+  
+  onShareAppMessage: function (ops) {
+    console.log(ops);
+    let foreardObj = {
+      title: this.data.title,
+      path: "/pages/articledetail/articledetail?articleid=" + this.data.articleid,
+      success:(r) => {
+        console.log("转发成功");
+        console.log(r);
+        api.forwardStatic( app )
+      }
+    };
+    return foreardObj;
   }
 })

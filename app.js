@@ -7,11 +7,7 @@ App({
   openid: null,
   //appid:"3047487959063285085",
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
     this.getSystemInfo();
-    wx.setStorageSync('logs', logs)
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -34,6 +30,18 @@ App({
     })
   },
 
+  // 数据统计-访问
+  statistics: function () {
+    let address = this.ip + "weiXin/data/updateVisitPv/" + this.appid + "/" + this.openid;
+    let body = {
+      appId: this.appid,
+      openId: this.openid
+    };
+    api.request({}, body, "POST", address, "json", false).then( res => {
+      console.log("访问数据统计");
+    } )
+  },
+
   // 获取相关信息openid
   getSystemInfo: function () {
     wx.login({
@@ -53,6 +61,9 @@ App({
             console.log(res);
             if (res.data.code == 200 && res.data.result) {
               this.openid = res.data.data;
+
+              // 访问数据统计
+              this.statistics();
             }
           })
         }

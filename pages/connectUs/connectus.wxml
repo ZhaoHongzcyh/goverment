@@ -2,19 +2,30 @@
 <view class="connectus">
   <view class="singlelist">
     <view class="commonLeft">联系电话</view>
-    <view class="commonRight">010-66666</view>
+    <view class="commonRight">{{ phone }}</view>
   </view>
   <view class="singlelist">
     <view class="commonLeft">官方邮箱</view>
-    <view class="commonRight">ABC@xxx.com</view>
+    <view class="commonRight">{{ mail }}</view>
   </view>
   <view class="singlelist">
     <view class="commonLeft">办公地址</view>
-    <view class="commonRight">云南省昭通市昭阳区公园路45号</view>
+    <view class="commonRight">{{ address }}</view>
   </view>
 </view>
 
 <!-- 地图区域 -->
-    <map  scale="15" class="map">
+    <map 
+      class="map" 
+      latitude="{{ baseinfo.latitudeX }}" 
+      longitude="{{ baseinfo.longitudeX }}"
+      markers="{{ markers }}"
+      enable-rotate="{{ true }}"
+      enable-zoom="{{ true }}"
+      wx:if="{{ baseinfo!= null }}"
+      >
 
     </map>
+
+<!-- 内容加载等待模态框 -->
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>
