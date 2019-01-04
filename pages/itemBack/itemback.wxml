@@ -1,0 +1,40 @@
+<!--题库-->
+<view>
+    <!-- 答题进度 -->
+    <view class="progress">
+      <progress percent="{{ ((ordernum+1)/subject.length) * 100 }}" 
+        backgroundColor="#D7DEF7" 
+        activeColor="#4963C4" 
+        active="{{ true }}"
+        active-mode="forwards"
+      ></progress>
+      <view class="numinfo">
+        <text>第</text>
+        <text class="noworder">{{ ordernum + 1 }}</text>
+        <text>/{{ subject.length }}题</text>
+      </view>
+    </view>
+    <!-- 单选题 -->
+    <singlechoose 
+      info="{{ answering }}"
+      bind:submit="storage" 
+      options="{{ optionsList }}" num="{{ ordernum + 1 }}" wx:if="{{ answering.type == 1 }}"/>
+
+    <!-- 多选题 -->
+    <multipchoose 
+      info="{{ item.info }}" 
+      options="{{ optionsList }}" num="{{ ordernum + 1 }}" wx:if="{{ answering.type == 2 }}"/>
+
+    <!-- 填空题 -->
+    <fillblank
+      info="{{ item.info }}"
+      num="{{ ordernum + 1 }}"
+      wx:if="{{ answering.type == 3 }}"
+    />
+
+    <view class="turnsubject">
+      <view bindtap="upOrderNum">上一题</view>
+      <view bindtap="downOrderNum">下一题</view>
+    </view>
+</view>
+

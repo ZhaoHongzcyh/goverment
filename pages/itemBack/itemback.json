@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "政务官网",
+  "usingComponents": {
+    "articlelist": "/Component/articleList/articleList",
+    "wheelimg": "/Component/wheelImg/wheelImg",
+    "govmenu": "/Component/menuList/menulist",
+    "comment": "/Component/reply/reply",
+    "suspen": "/Component/suspension/suspension",
+    "load": "/Component/load/load",
+    "loaderr": "/Component/loadErr/loaderr",
+    "singlechoose":"/Component/singleChoose/singlechoose",
+    "multipchoose":"/Component/multipleChoose/multiplechoose",
+    "fillblank":"/Component/fillBlank/fillblank"
+  }
+}

@@ -1,0 +1,30 @@
+.subject{
+  font-size: 30rpx;
+  padding-left: 28rpx;
+}
+.type{
+  display: inline-block;
+  text-align: center;
+  background-color: #2DB483;
+  width: 90rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 22rpx;
+  color: white;
+  border: 1rpx solid red;
+}
+
+.txt{
+  position: relative;
+  margin: auto;
+  margin-top: 44rpx;
+  width: 638rpx;
+  height: 402rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #999;
+}
+
+.txtinput{
+  width: 100%;
+  height: 100%;
+}

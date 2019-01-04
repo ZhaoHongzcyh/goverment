@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/logs/logs",
     "pages/connectUs/connectus",
@@ -10,7 +11,10 @@
     "pages/articleClass/articleclass",
     "pages/articledetail/articledetail",
     "pages/feedback/feedback",
-    "pages/evaluation/evaluation"
+    "pages/evaluation/evaluation",
+    "pages/startEvaluat/startevaluat",
+    "pages/itemBack/itemback"
+    
   ],
   "enablePullDownRefresh": false,
   "window": {

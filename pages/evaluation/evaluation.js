@@ -78,9 +78,11 @@ Page({
       status: 1
     };
 
-    api.request({}, body, "POST", address, "json", false).then( res => {
+    api.request({}, body, "POST", address, "application", false).then( res => {
       if(res.data.code == 200 && res.data.result){
         console.log(res);
+        console.log("123")
+        this.handleEvaluatData( res.data.data.list );
         this.hideLoad();
       }
       else{
@@ -99,13 +101,24 @@ Page({
     else{
       this.setData({ isRepeatReq: false } );
       if( data.length == 1 ){
-        // wx.navigateTo({
-        //   url: '',
-        // })
+        this.getEvaluationInfo( data[0].id );
       }
       else{
-        // this.setData({})
+        this.setData({ evaluatList: data})
       }
     }
+  },
+
+  // 查询测评详细信息
+  searchEvaluationInfo: function ( e ) {
+    let id = e.currentTarget.dataset.id;
+    this.getEvaluationInfo(id);
+  },
+
+  // 查看测评详细信息
+  getEvaluationInfo: function ( id ){
+    wx.navigateTo({
+      url: '/pages/startEvaluat/startevaluat?id=' + id,
+    })
   }
 })

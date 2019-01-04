@@ -1,0 +1,25 @@
+<!--开始测评页面-->
+<view class="startevaluat">
+  <view class="scrollw">
+    <view class="titleImg">
+      <image src="{{ baseinfo.iconUrl }}"></image>
+    </view>
+    <view class="evacontent">
+      <view class="evatitle">{{ baseinfo.title }}</view>
+      <view class="evanum">共{{ subject.length }}道题</view>
+    </view>
+
+    <!-- 测评介绍 -->
+    <view>
+      <view class="introduction">
+        <view class="line"></view>
+        <view>测评介绍</view>
+      </view>
+
+      <view class="content">
+        {{ baseinfo.description }}
+      </view>
+    </view>
+  </view>
+  <view class="submit" bindtap="startEva">开始测评</view>
+</view>

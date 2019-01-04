@@ -3,7 +3,7 @@ const api = require("./utils/util.js");
 App({
   ip:"https://xcx.imdtcx.com/",
   appid:"3682415975335546821",
-  //appid:'6716107060024131804',
+  // appid:'6716107060024131804',
   openid: null,
   //appid:"3047487959063285085",
   onLaunch: function () {

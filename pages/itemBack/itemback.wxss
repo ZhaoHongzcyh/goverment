@@ -1,0 +1,28 @@
+.progress{
+  display: flex;
+  height: 72rpx;
+  font-size: 24rpx;
+  background-color: rgba(245,245,245,1);
+  align-items: center;
+  color: #333;
+}
+
+.progress>progress{
+  margin-left: 24rpx;
+  width: 569rpx;
+  height: 20rpx;
+  background-color:#D7DEF7;
+}
+
+.numinfo{
+  margin-left: 40rpx;
+}
+
+.noworder{
+  color: red;
+}
+
+.turnsubject{
+  display: flex;
+  align-items: center;
+}

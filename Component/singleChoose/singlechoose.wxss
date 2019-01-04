@@ -1,0 +1,44 @@
+.subject{
+  font-size: 30rpx;
+  padding-left: 28rpx;
+}
+
+.type{
+  display: inline-block;
+  text-align: center;
+  background-color: #2DB483;
+  width: 90rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 22rpx;
+  color: white;
+  border: 1rpx solid red;
+}
+
+.options{
+  margin-top: 50rpx;
+}
+
+.singleoption{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 40rpx;
+  padding-left: 20rpx;
+  overflow: auto;
+  height: 90rpx;
+  width: 638rpx;
+  line-height: 90rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #999;
+}
+
+.chooseimg{
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+}
+
+.singleoption>view{
+  margin-left: 22rpx;
+}

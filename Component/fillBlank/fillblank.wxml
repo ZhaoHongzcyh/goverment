@@ -1,0 +1,12 @@
+<view>
+    <view>
+      <view class="subject" data-id="{{ info.id }}">
+        <text>{{ 1 }} .</text>
+        <text class="type">填空题</text>
+        <text>{{ info.title }}</text>
+      </view>
+      <view class="txt">
+        <textarea class="txtinput"></textarea>
+      </view>
+    </view>
+</view>

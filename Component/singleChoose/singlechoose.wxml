@@ -1,0 +1,24 @@
+<!--题库-->
+<view>
+  <view class="subject" data-id="{{ info.id }}">
+    <text>{{ num }} .</text>
+    <text class="type">单选题</text>
+    <text>{{ info.title }}</text>
+  </view>
+  <view class="options">
+    <block wx:for="{{ options }}">
+      <view class="singleoption" 
+        bindtap="choose"
+        data-type="{{ info.type }}"
+        data-subjectid="{{ info.id }}" 
+        data-optionid="{{ item.id }}"
+        data-index="{{ index }}" 
+        data-value="{{ item.content }}">
+          <image class="chooseimg" 
+       src="{{ item.checked? '/pages/itemBack/img/choose.png':'/pages/itemBack/img/nochoose.png' }}">
+          </image>
+        <view>{{ item.content }}</view>
+      </view>
+    </block>
+  </view>
+</view>
