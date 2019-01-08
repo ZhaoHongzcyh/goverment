@@ -19,6 +19,9 @@
           </image>
         <view>{{ item.content }}</view>
       </view>
+      <view wx:if="{{ item.fill == 1 }}">
+          <textarea class="fill" value="2"></textarea>
+      </view>
     </block>
   </view>
 </view>

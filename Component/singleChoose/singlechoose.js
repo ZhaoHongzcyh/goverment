@@ -34,18 +34,18 @@ Component({
     choose: function (e) {
       let index = e.currentTarget.dataset.index;
       let subjectid = e.currentTarget.dataset.subjectid;
-      let optionsid = [];
+      let optionsId = [];
       let content = null;//填空内容（多选与单选content一直为空）
       let options = this.data.options;
       options.map( (item,num) => {
         item.checked = false;
         if(index == num){
           item.checked = true;
-          optionsid.push(item.id);
+          optionsId.push(item.id);
         }
       })
       this.setData({ options});
-      this.triggerEvent("submit", { subjectid, optionsid, content });
+      this.triggerEvent("submit", { subjectid, optionsId, content });
     }
   }
 })

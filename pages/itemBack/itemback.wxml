@@ -17,24 +17,41 @@
     <!-- 单选题 -->
     <singlechoose 
       info="{{ answering }}"
+      data-type="{{ answering.type }}"
       bind:submit="storage" 
       options="{{ optionsList }}" num="{{ ordernum + 1 }}" wx:if="{{ answering.type == 1 }}"/>
 
     <!-- 多选题 -->
     <multipchoose 
-      info="{{ item.info }}" 
+      info="{{ answering }}"
+      bind:submit="storage" 
+      data-type="{{ answering.type }}" 
       options="{{ optionsList }}" num="{{ ordernum + 1 }}" wx:if="{{ answering.type == 2 }}"/>
 
     <!-- 填空题 -->
     <fillblank
-      info="{{ item.info }}"
+      value="{{ txtValue }}"
+      info="{{ answering }}"
+      data-type="{{ answering.type }}"
       num="{{ ordernum + 1 }}"
+      bind:submit="storage"
       wx:if="{{ answering.type == 3 }}"
     />
+    <view class="turnsubject" wx:if="{{ordernum != 0 && ordernum != subject.length-1 }}">
+      <view bindtap="upOrderNum"  class="pageup primary">上一题</view>
+      <view bindtap="downOrderNum" class="pagedown primary">下一题</view>
+    </view>
 
-    <view class="turnsubject">
-      <view bindtap="upOrderNum">上一题</view>
-      <view bindtap="downOrderNum">下一题</view>
+    <view class="turnsubject" wx:if="{{ordernum == 0 && subject.length != 1}}">
+      <view bindtap="downOrderNum" class="firstpage">下一题</view>
+    </view>
+    <view class="turnsubject" wx:if="{{subject.length == 1}}">
+      <view class="firstpage" bindtap="submitAnswer">提交</view>
+    </view>
+
+    <view class="turnsubject" wx:if="{{ordernum != 0 && ordernum == subject.length-1 }}">
+      <view bindtap="upOrderNum"  class="pageup primary">上一题</view>
+      <view bindtap="downOrderNum" class="pagedown primary" bindtap="submitAnswer">提交</view>
     </view>
 </view>
 

@@ -12,6 +12,11 @@ Component({
     num:{
       type: String,
       value: 1
+    },
+    
+    value:{
+      type: String,
+      value:""
     }
   },
 
@@ -26,6 +31,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    fillback: function (e) {
+      console.log(e);
+      console.log(this.data.info)
+      let subjectid = e.currentTarget.dataset.id;
+      let optionsId = subjectid;
+      let content = e.detail.value;
+      this.triggerEvent("submit", { subjectid, optionsId, content });
+    }
   }
 })

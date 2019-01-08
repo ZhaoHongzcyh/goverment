@@ -7,14 +7,20 @@
   </view>
   <view class="options">
     <block wx:for="{{ options }}">
-      <view class="singleoption" 
+      <view class="singleoption"
+        data-index="{{ index }}" 
         data-type="{{ info.type }}" 
-        data-id="{{ item.id }}" 
+        data-id="{{ item.id }}"
+        data-subjectid="{{ item.subjectId }}"
+        bindtap="choose" 
         data-value="{{ item.content }}">
           <image class="chooseimg" 
        src="{{ item.checked? '/pages/itemBack/img/choose.png':'/pages/itemBack/img/nochoose.png' }}">
           </image>
         <view>{{ item.content }}</view>
+      </view>
+      <view wx:if="{{ item.fill == 1 }}">
+          <textarea class="fill" value="2"></textarea>
       </view>
     </block>
   </view>

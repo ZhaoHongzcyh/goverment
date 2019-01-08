@@ -1,12 +1,19 @@
 <view>
     <view>
       <view class="subject" data-id="{{ info.id }}">
-        <text>{{ 1 }} .</text>
+        <text>{{ num }} .</text>
         <text class="type">填空题</text>
         <text>{{ info.title }}</text>
       </view>
       <view class="txt">
-        <textarea class="txtinput"></textarea>
+        <textarea  
+          class="txtinput"
+          data-id="{{ info.id }}"
+          data-type="{{ info.type }}"
+          value="{{ value }}" 
+          data-subjectid="{{ info.subjectId }}"
+          bindinput="fillback"
+          ></textarea>
       </view>
     </view>
 </view>

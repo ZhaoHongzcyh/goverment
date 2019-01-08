@@ -42,3 +42,9 @@
 .singleoption>view{
   margin-left: 22rpx;
 }
+
+.fill{
+  width: 200rpx;
+  height: 100rpx;
+  border: 1rpx solid red;
+}
