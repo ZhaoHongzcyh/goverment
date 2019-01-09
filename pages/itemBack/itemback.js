@@ -7,11 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLoad: false,
+    loadtxt: "loading...",
     id: null,
     baseinfo:null,
     subject:null, //题库
     answering:null,
     optionsList:[],
+    isNeedFillSingle: false,
     ordernum: 0, //当前处于第几题
     txtValue:null,//填空题用户已经填写的答案
     singleAnswer:[], //用户单选答案库
@@ -33,8 +36,58 @@ Page({
 
   },
 
+  // 隐藏加载模态框
+  hideLoad: function () {
+    this.setData({
+      isLoad: false,
+      loadtxt: "loading"
+    })
+  },
+
+  // 加载结果提醒
+  layOutTxt: function (txt) {
+    this.setData({
+      loadtxt: txt
+    })
+    setTimeout(() => {
+      this.hideLoad();
+    }, 3000)
+  },
+
+  // 显示加载模态框
+  showLoad: function () {
+    this.setData({
+      isLoad: true,
+      loadtxt: "loading"
+    })
+  },
+
+  // 显示提示信息
+  showModelTxt: function (txt) {
+    this.setData({
+      loadtxt: txt,
+      isLoad: true
+    })
+  },
+
+  // 单选必填未填写的时候，提醒信息
+  alertModel: function () {
+    let isNeedFillSingle = this.data.isNeedFillSingle;
+    if (isNeedFillSingle){
+      wx.showToast({
+        title: '请填写完整内容',
+        icon:"none"
+      });
+      return false;
+    }
+    else{
+      return true;
+    }
+  },
+
   // 获取题库信息
   getItemBack: function (id) {
+    this.showLoad();
     let address = app.ip + "evaluation/find/" + id;
     let body = {
       id: id
@@ -43,6 +96,7 @@ Page({
       console.log("题库信息");
       console.log(res);
       if( res.data.code == 200 && res.data.result){
+        this.hideLoad();
         let subject = res.data.data.subjectBoList
         subject.map( (item,index) => {
           item.optionList.map( (single,num) =>{
@@ -56,10 +110,10 @@ Page({
         this.handleAnswing(0, subject);
       }
       else{
-        console.log("数据加载异常")
+        this.layOutTxt("试题加载失败");
       }
     } ).then( e => {
-      console.log("数据加载异常");
+      this.layOutTxt("试题加载失败");
     } )
   },
 
@@ -79,6 +133,9 @@ Page({
 
   // 上一题
   upOrderNum: function () {
+    if(!this.alertModel()){
+      return false;
+    }
     let ordernum = this.data.ordernum;
     let subject = this.data.subject;
     this.handleAnswing( ordernum - 1, subject);
@@ -86,6 +143,9 @@ Page({
 
   // 下一题
   downOrderNum: function () {
+    if (!this.alertModel()) {
+      return false;
+    }
     let ordernum = this.data.ordernum;
     let subject = this.data.subject;
     this.handleAnswing(ordernum + 1, subject);
@@ -99,14 +159,16 @@ Page({
       // 单选题
       let singleAnswer = this.data.singleAnswer;
       singleAnswer.map( (item,index) => {
-        if(item.subjectId == answering.subjectId){
+        if(item.subjectId == answering.id){
           optionsList.map( (option, num) => {
-            hasChoosed.push(item.optionsId);
-            if(option.id == item.optionsId){
+            hasChoosed.push(item.optionId);
+            if(option.id == item.optionId){
               option.checked = true;
+              option.txt = item.content;
             }
             else{
               option.checked = false;
+              option.txt = null;
             }
           } )
         }
@@ -117,17 +179,30 @@ Page({
       // 多选题
       let multipAnswer = this.data.multipAnswer;
       let answer = [];
+      let txt = [];
       multipAnswer.map( (item,index) => {
         if (item.subjectId == answering.id){
           answer.push(item.optionId);
+          txt.push(item.content);
         }
       } )
       optionsList.map( (item, num) =>{
-        if(answer.includes(item.id)){
+        multipAnswer.map( (mul, order) => {
+          if (mul.optionId == item.id){
+            item.txt = mul.content;
+            console.log("等于")
+          }
+          else{
+            // console.log(mul.id,item.id);
+          }
+        } )
+        if (answer.includes(item.id)){
+          let order = answer.indexOf(item.id);
           item.checked = true;
         }
         else{
           item.checked = false;
+          item.txt = null;
         }
       } )
       this.setData({ optionsList })
@@ -148,6 +223,8 @@ Page({
 
   // 储存用户选择的答案
   storage: function (e, ordernum) {
+    console.log("storage");
+    console.log(e);
     let optionId = e.detail.optionsId;
     let subjectid = e.detail.subjectid;
     let content = e.detail.content;
@@ -156,7 +233,15 @@ Page({
     // return false;
     //choosetype 1：单选题 2：多选题 3：填空题
     if( choosetype == 2) {
-        this.checkMultipAnswer(subjectid, optionId);
+      let mustfill = e.detail.mustfill;
+      if(mustfill.mustfill == 1){
+        this.setData({ isNeedFillSingle: true});
+        return false;
+      }
+      else{
+        this.setData({ isNeedFillSingle: false });
+      }
+      this.checkMultipAnswer(subjectid, optionId, content);
     }
     else if( choosetype == 1 ){
       optionId.map((item, num) => {
@@ -164,9 +249,15 @@ Page({
             // memberEvaluationId: this.data.id,
           subjectId: subjectid,
           optionId: item,
-          content: content
+          content: content.value
         };
-        this.checkSingleAnswer(detailList);
+        if(content.mustfill == 1 && content.value == null || content.value == ""){
+          this.setData({ isNeedFillSingle: true })
+        }
+        else{
+          this.setData({ isNeedFillSingle: false })
+        }
+        this.checkSingleAnswer(detailList, content);
       })
     }
     else if(choosetype == 3){
@@ -180,7 +271,7 @@ Page({
   },
 
   // 检查用户储存的单选答案是否存在相同的数据
-  checkSingleAnswer: function (detailList) {
+  checkSingleAnswer: function (detailList, content) {
     let singleAnswer = this.data.singleAnswer;
     if (singleAnswer.length == 0){
       singleAnswer.push(detailList);
@@ -203,8 +294,8 @@ Page({
   },
 
   // 处理用户提交的多选答案
-  checkMultipAnswer: function ( subjectId, optionsId ){
-    console.log(optionsId);
+  checkMultipAnswer: function ( subjectId, optionsId, content ){
+    // console.log(optionsId);
     let multipAnswer = this.data.multipAnswer;
     let multip = [];
     multipAnswer.map( (item,index) => {
@@ -219,6 +310,14 @@ Page({
         optionId: item,
         content: null
       };
+      console.log(content);
+      console.log(optionsId);
+      content.map( (sub, num) => {
+        if(sub.id == item){
+          detailList.content = sub.content;
+        }
+      } )
+      console.log(detailList);
       multip.push(detailList);
     })
     this.setData({ multipAnswer: multip });
@@ -256,9 +355,26 @@ Page({
       openId: app.openid,
     };
     let body = {info,detailList};
+    if(!this.alertModel()){
+      return false;
+    }
+    this.showModelTxt("正在提交");
     api.request({}, body, "POST", address, "json", false).then(res=>{
       console.log("提交答案");
       console.log(res);
+      if(res.data.code == 200 && res.data.result){
+        this.layOutTxt("提交成功");
+        setTimeout( ()=>{
+          wx.navigateBack({
+            delta: 2
+          })
+        },2000 );
+      }
+      else{
+        this.layOutTxt("提交失败");
+      }
+    }).catch(e => {
+      this.layOutTxt("提交失败");
     })
   }
 })

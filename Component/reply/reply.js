@@ -4,6 +4,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    isSelf:{
+      type: String,
+      value: 0
+    },
+
     userphoto:{
       type: String,
       value:"/Component/articleList/img/articleCover.png",

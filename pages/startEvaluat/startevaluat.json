@@ -1,1 +1,7 @@
-{}
+{
+  "navigationBarTitleText": "政务官网",
+  "usingComponents": {
+    "load": "/Component/load/load",
+    "loaderr": "/Component/loadErr/loaderr"
+  }
+}

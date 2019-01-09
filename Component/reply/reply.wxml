@@ -1,7 +1,8 @@
 <!--Component/reply/reply.wxml-->
 <view class="comment">
   <view class="commenthead">
-    <image src="{{userphoto}}" class="userphoto"></image>
+    <image src="{{userphoto}}" wx:if="{{ isSelf == 0 }}" class="userphoto"></image>
+    <view class="userphoto" wx:if="{{ isSelf == 1 }}"><open-data type="userAvatarUrl"></open-data></view>
     <view class="username">{{username}}</view>
     <view class="time">{{time}}</view>
   </view>

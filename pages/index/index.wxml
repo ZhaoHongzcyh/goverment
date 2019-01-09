@@ -1,7 +1,7 @@
  <!-- 广告轮播图 -->
-<wheelimg whileImg="{{ AdvertisementImgUrls }}" bind:click="getimg"/>
+<wheelimg whileImg="{{ AdvertisementImgUrls }}" bind:click="readArticleByClickImg"/>
 <view class="govemenu">
-  <govmenu bind:click="toArticleClass"/>
+  <govmenu menu="{{ menu }}" bind:click="toArticleClass"/>
 </view>
 
 <block wx:for="{{article}}">
@@ -16,11 +16,24 @@
     bind:click="readArticle"/>
 </block>
 
+<!-- 权限获取弹框 -->
+<view class="powermodel" wx:if="{{ !isGetPower }}">
+  <view class="modelcontent">
+    <view class="headpng">
+      <image class="shopPng" src="{{ baseInfo.backgroudImgUrl }}"/>
+    </view>
+    <view class="titletxt">政务小程序</view>
+    <view class="titletxt">申请获取你的昵称、头像信息</view>
+    <view>
+      <button class="getpower" catchtap="getUserInfo" open-type='getUserInfo'>允许</button>
+    </view>
+  </view>
+</view>
 <!-- 浮动区域 -->
 <suspen/>
 
 <!-- 加载等待区域 -->
-<load isLoad="{{ isLoad }}"/>
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>
 
 <!-- 文章加载异常情况 -->
-<loaderr bind:repeat="getArticle" wx:if="{{ isRepeatReq }}"/>
+  <loaderr bind:repeat="getArticle" wx:if="{{ isRepeatReq }}" infotxt="加载失败" eventtxt="刷新一次"/>

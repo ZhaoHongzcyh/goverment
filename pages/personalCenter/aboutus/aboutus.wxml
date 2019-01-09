@@ -3,7 +3,13 @@
   <image class="usImg" src="{{ baseInfo.backgroudImgUrl }}"></image>
   <view class="title">{{ baseInfo.name }}</view>
   <view class="summary">{{ baseInfo.summary }}</view>
-  <view>
-    Nullam tempor tortor in cursus gravida. Sed fermentum quam eu libero condimentum tincidunt. Suspendisse potenti. Sed consectetur, nunc sit amet auctor venenatis, eros lectus interdum urna, et gravida augue augue in purus. Fusce fringilla lectus vitae lacus vulputate, sed feugiat felis congue. Nunc vitae consequat felis, tincidunt vehicula mauris. Fusce nibh velit, porta a facilisis vel, semper ut justo
+  <view class="introduce">
+    {{ baseInfo.introduce }}
   </view>
 </view>
+
+<view wx:if="{{ baseInfo == null }}" class="offarticle">
+    <loaderr bind:repeat="getShopInfo" infotxt="加载失败" eventtxt="刷新一次"/>
+</view>
+<!-- 关于我们加载等待模态框 -->
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>

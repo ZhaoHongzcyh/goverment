@@ -20,7 +20,16 @@
         <view>{{ item.content }}</view>
       </view>
       <view wx:if="{{ item.fill == 1 }}">
-          <textarea class="fill" value="2"></textarea>
+          <textarea
+            data-index="{{index}}"  
+            disabled="{{!item.checked}}"
+            data-id="{{ item.id }}"
+            bindinput="getContent"
+            placeholder-class="plctxt"
+            placeholder="{{ item.mustFill == 1? '选择之后需要必填':'非必填' }}"
+            data-subjectid="{{ item.subjectId }}" 
+            class="fill" value="{{ item.txt }}">
+            </textarea>
       </view>
     </block>
   </view>

@@ -21,5 +21,10 @@
       </view>
     </view>
   </view>
-  <view class="submit" bindtap="startEva">开始测评</view>
+  <view class="submit" >
+    <button class="submit" bindtap="startEva" open-type='getUserInfo'>开始测评</button>
+  </view>
 </view>
+
+<!-- 模态框 -->
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>

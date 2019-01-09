@@ -9,7 +9,9 @@ Page({
   data: {
     id: null,
     baseinfo: null,
-    subject:null
+    subject:null,
+    isLoad: false,
+    loadtxt:"loading..."
   },
 
   onLoad: function (options) {
@@ -24,6 +26,40 @@ Page({
 
   onShareAppMessage: function () {
 
+  },
+
+  // 隐藏加载模态框
+  hideLoad: function () {
+    this.setData({
+      isLoad: false,
+      loadtxt: "loading"
+    })
+  },
+
+  // 加载结果提醒
+  layOutTxt: function (txt) {
+    this.setData({
+      loadtxt: txt
+    })
+    setTimeout(() => {
+      this.hideLoad();
+    }, 3000)
+  },
+
+  // 显示加载模态框
+  showLoad: function () {
+    this.setData({
+      isLoad: true,
+      loadtxt: "loading"
+    })
+  },
+
+  // 显示提示信息
+  showModelTxt: function (txt) {
+    this.setData({
+      loadtxt: txt,
+      isLoad: true
+    })
   },
 
   // 获取题库信息
@@ -50,9 +86,9 @@ Page({
   },
 
   // 开始测评入口
-  startEva: function ( e ){
+  startEva: function (e ){
     wx.navigateTo({
-      url: '/pages/itemBack/itemback?id=' + this.data.id,
+      url: '/pages/itemBack/itemback?id=' + this.data.id
     })
   }
 })

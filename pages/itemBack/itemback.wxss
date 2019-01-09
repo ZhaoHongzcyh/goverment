@@ -1,3 +1,10 @@
+.page{
+  position: fixed;
+  width: 100%;
+  height: calc(100% - 110rpx);
+  overflow: auto;
+}
+
 .progress{
   display: flex;
   height: 72rpx;

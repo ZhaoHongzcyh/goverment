@@ -25,7 +25,9 @@
     <!-- 评论回复 -->
     <view class="comment">
       <block wx:for="{{ replyList }}">
-        <comment 
+        <comment
+          isSelf="{{ item.isSelf? 1:0 }}"
+          userphoto="{{ item.iconUrl }}" 
           username="{{ item.nickname }}" 
           time="{{ item.time }}" 
           comment="{{ item.commentContent }}"/>

@@ -1,7 +1,6 @@
 /* pages/aboutus/aboutus.wxss */
 .usImg{
   width: 100%;
-  border: 1rpx solid red;
 }
 .title{
   color: #333;
@@ -13,4 +12,11 @@
   color: #999;
   text-align: center;
   font-size: 28rpx;
+}
+
+.introduce{
+  padding: 20rpx;
+  margin-top: 42rpx;
+  font-size: 30rpx;
+  color: #333;
 }

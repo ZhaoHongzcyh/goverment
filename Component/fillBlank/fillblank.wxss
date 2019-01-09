@@ -5,13 +5,13 @@
 .type{
   display: inline-block;
   text-align: center;
+  margin-right: 10rpx;
   background-color: #2DB483;
   width: 90rpx;
   height: 36rpx;
   line-height: 36rpx;
   font-size: 22rpx;
   color: white;
-  border: 1rpx solid red;
 }
 
 .txt{

@@ -7,14 +7,14 @@ Component({
     menu:{
       type: Array,
       value:[
-        { title: '政务公开', src: "/Component/menuList/img/government_affairs@3x.png"},
-        { title: '会议要闻', src: "/Component/menuList/img/meeting@3x.png" },
-        { title: '通知公告', src: "/Component/menuList/img/notice@3x.png" },
-        { title: '乡镇动态', src: "/Component/menuList/img/dynamic@3x.png" },
-        { title: '招商引资', src: "/Component/menuList/img/investment@3x.png" },
-        { title: '通知公告', src: "/Component/menuList/img/notice@3x.png" },
-        { title: '乡镇动态', src: "/Component/menuList/img/dynamic@3x.png" },
-        { title: '招商引资', src: "/Component/menuList/img/investment@3x.png" }
+        { title: '政务公开', src: "/Component/menuList/img/government_affairs@3x.png",id:null},
+        { title: '会议要闻', src: "/Component/menuList/img/meeting@3x.png",id:null },
+        { title: '通知公告', src: "/Component/menuList/img/notice@3x.png",id:null },
+        { title: '乡镇动态', src: "/Component/menuList/img/dynamic@3x.png" ,id: null},
+        { title: '招商引资', src: "/Component/menuList/img/investment@3x.png", id: null },
+        { title: '通知公告', src: "/Component/menuList/img/notice@3x.png" ,id: null},
+        { title: '乡镇动态', src: "/Component/menuList/img/dynamic@3x.png" ,id: null},
+        { title: '招商引资', src: "/Component/menuList/img/investment@3x.png" ,id: null}
       ]
     },
 

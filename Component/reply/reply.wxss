@@ -14,6 +14,7 @@
   height: 72rpx;
   margin-left: 30rpx;
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .username{

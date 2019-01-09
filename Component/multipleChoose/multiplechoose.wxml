@@ -11,6 +11,9 @@
         data-index="{{ index }}" 
         data-type="{{ info.type }}" 
         data-id="{{ item.id }}"
+        data-fill="{{ item.fill }}"
+        data-mustfill="{{ item.mustFill }}"
+        data-must
         data-subjectid="{{ item.subjectId }}"
         bindtap="choose" 
         data-value="{{ item.content }}">
@@ -20,7 +23,16 @@
         <view>{{ item.content }}</view>
       </view>
       <view wx:if="{{ item.fill == 1 }}">
-          <textarea class="fill" value="2"></textarea>
+          <textarea
+            data-index="{{index}}"  
+            disabled="{{!item.checked}}"
+            data-id="{{ item.id }}"
+            bindinput="getContent"
+            placeholder-class="plctxt"
+            placeholder="{{ item.mustFill == 1? '选择之后需要必填':'' }}"
+            data-subjectid="{{ item.subjectId }}" 
+            class="fill" value="{{ item.txt }}">
+            </textarea>
       </view>
     </block>
   </view>

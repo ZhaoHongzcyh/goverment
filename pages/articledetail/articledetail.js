@@ -107,11 +107,15 @@ Page({
           title: summary.desciption,
           time: summary.createDate.split("T")[0],
           visitNum: summary.visitNum != null? summary.visitNum : 0,
-          summary:summary,
-          clickupStatus:member.isLike,
-          collectStatus: member.isCollect,
-          member: member
+          summary:summary
         });
+        if(member != null){
+          this.setData({
+            clickupStatus: member.isLike,
+            collectStatus: member.isCollect,
+            member: member
+          })
+        }
 
         this.getArticleReply(); //获取评论
         this.addReadNum(articleid); //增加阅读量
@@ -215,10 +219,11 @@ Page({
       status: this.data.collectStatus == 0? 1 : 0
     };
     api.request( {}, body, "POST", address, "application", false ).then( res=>{
-      console.log("文章收藏");
-      console.log(res)
       if(res.data.code == 200 && res.data.result){
         let member = this.data.member;
+        if(member == null){
+          member = {};
+        }
         member.isCollect = body.status;
         this.setData({
           collectStatus: body.status,
@@ -289,6 +294,7 @@ Page({
         let d = new Date();
         let time = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
         let reply = {
+          isSelf:1,
           time: time,
           commentContent: body.commentContent,
         }

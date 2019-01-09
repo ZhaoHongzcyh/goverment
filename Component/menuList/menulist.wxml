@@ -12,7 +12,8 @@
       <block wx:for="{{5}}" wx:for-item="c">
         <view 
           class="singlegov" 
-          wx:if="{{menu[(item+1)*5 - (5-c)].title}}" 
+          wx:if="{{menu[(item+1)*5 - (5-c)].title}}"
+          data-id="{{ menu[( item + 1 ) * 5 - ( 5 - c )].id }}" 
           data-title="{{ menu[( item + 1 ) * 5 - ( 5 - c )].title }}" 
           bindtap="click"
         >

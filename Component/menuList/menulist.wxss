@@ -34,7 +34,6 @@
   height: 4rpx;
   border-radius: 2rpx;
   background-color: #CCCCCC;
-  border: 1rpx solid red;
 }
 .openline{
   background-color: #E71600;

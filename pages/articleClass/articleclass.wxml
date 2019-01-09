@@ -1,5 +1,5 @@
 <!--pages/articleClass/articleclass.wxml-->
-<view>
+<view wx:if="{{ articleType.length != 0 }}">
   <!-- head -->
     <swiper 
     class="swiper"
@@ -18,6 +18,7 @@
           wx:if="{{ articleType[(item+1)*5 - (5-c)].title }}" 
           data-title="{{ articleType[( item + 1 ) * 5 - ( 5 - c )].title }}" 
           bindtap="switchArticleType"
+          data-id="{{ articleType[( item + 1 ) * 5 - ( 5 - c )].id }}"
           data-current="{{ numindex }}"
           data-index="{{ (item+1) * 5 - ( 5-c ) }}"
         >
@@ -31,7 +32,23 @@
 </swiper>
 
 <!-- 文章列表 -->
-<view>
-  <articlelist/>
+  <view>
+    <block wx:for="{{ allArticle }}">
+      <articlelist
+      data-id="{{ item.summary.id }}" 
+      title="{{item.summary.desciption}}" 
+      dataTime="{{ item.summary.datetime }}"
+      readNum="{{ item.summary.visitNum }}"
+      thumbsUpNum="{{ item.summary.likeNum }}"
+      replyNum="{{ item.summary.commentNum }}"
+      src="{{ item.summary.imgUrl }}"
+      bind:click="readArticle"/>
+    </block>
+  </view>
 </view>
+
+<view wx:if="{{ allArticle.length == 0 }}" class="offarticle">
+    <loaderr bind:repeat="searchAllArticle" infotxt="未查询到相关文章" eventtxt="刷新一次"/>
 </view>
+
+<load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>

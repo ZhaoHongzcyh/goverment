@@ -6,7 +6,7 @@ Component({
   properties: {
     whileImg:{
       type: Array,
-      value: ['/Component/articleList/img/articleCover.png', '/Component/articleList/img/articleCover.png']
+      value: []
     }
   },
 
