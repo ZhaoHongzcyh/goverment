@@ -10,9 +10,9 @@
     {{ comment }}
   </view>
   <view class="reply">
-    <view class="writerReply">作者回复</view>
+    <view class="writerReply">作者回复:</view>
     <view class="replyContent">
-      {{ reply }}
+      {{ reply == null? "暂未回复": reply }}
     </view>
   </view>
 </view>

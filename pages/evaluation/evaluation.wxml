@@ -8,6 +8,17 @@
   </block>
 </view>
 
+<!-- 获取用户手机号弹框 -->
+<view class="getPhoneModel" wx:if="{{ isOpenPhoneModel }}">
+  <view class="selectPhone">
+    <image src="./img/close.png" bindtap="closePhoneModel" class="closemodel"/>
+    <view class="modeltxt">参与测评需要绑定您的手机号</view>
+    <view class="btn wxbtn">
+      <button class="phonebtn" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">微信快速授权</button>
+    </view>
+  </view>
+</view>
+
 <!-- 测评列表查询模态框 -->
 <load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>
 

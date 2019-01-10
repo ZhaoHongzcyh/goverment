@@ -33,3 +33,62 @@ page{
   width: 100%;
   margin-top: 30%;
 }
+
+/* 获取用户手机号弹框 */
+.getPhoneModel{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0rpx;
+  z-index: 40;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.closemodel{
+  position: absolute;
+  top: -33rpx;
+  right: -33rpx;
+  width: 66rpx;
+  height: 66rpx;
+  border-radius: 50%;
+}
+
+.selectPhone{
+  position: relative;
+  margin: auto;
+  margin-top: 45%;
+  padding-top: 96rpx;
+  width: 620rpx;
+  height: 340rpx;
+  border-radius: 10rpx;
+  background-color: white;
+}
+
+.modeltxt{
+  color: #333;
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.btn{
+  margin-top: 60rpx;
+}
+
+.wxbtn{
+  margin-top: 92rpx;
+}
+
+
+.phonebtn{
+  width: 310rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  letter-spacing: 5rpx;
+  background-color: #4963C4;
+  color: white;
+  font-size: 32rpx;
+}
+
+.wxbtn .phonebtn{
+  background-color: #39C615;
+}

@@ -6,7 +6,6 @@ App({
   // appid:'6716107060024131804',
   openid: null,
   baseInfo:null,
-  //appid:"3047487959063285085",
   onLaunch: function () {
     this.getSystemInfo();
     if (wx.getExtConfig) {

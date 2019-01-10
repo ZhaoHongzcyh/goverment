@@ -5,12 +5,16 @@ const api = require("../../utils/util.js");
 
 Page({
   data: {
+    requestNum:0,
+    maxRequestNum: 30,//防止重复发起大量请求
     isGetPower:false,
+    isOpenEvaluation:false,//是否打开测评
+    isOpenReply:false,//是否打开意见反馈
     power:null,
     baseInfo:null,
     menu:[],//文章分类
     userInfo: {},
-    AdvertisementImgUrls: ['/Component/articleList/img/articleCover.png', '/Component/articleList/img/articleCover.png'],
+    AdvertisementImgUrls: [],
     hasUserInfo: false,
     article:[],
     isRepeatReq: false,
@@ -24,6 +28,11 @@ Page({
   },
 
   onShow: function () {
+    this.setData({
+      requestNum: 0
+    })
+    this.searchFunctionSwitch(7);//查询测评功能开关
+    this.searchFunctionSwitch(8);//查询意见反馈功能开关
     this.searchArticleType();
     this.getArticle();
   },
@@ -62,19 +71,65 @@ Page({
     })
   },
 
+  // 判断是否超过最大请求限制
+  checkIsOverRequestNum: function () {
+    let requestNum = this.data.requestNum;
+    if (requestNum >= this.data.maxRequestNum) {
+      this.setData({
+        isRepeatReq: true,
+        requestNum:0
+      });
+      return false;
+    }
+    else {
+      this.setData({
+        requestNum: requestNum + 1
+      });
+      return true;
+    }
+  },
+
+  // 查询测评功能开关
+  searchFunctionSwitch: function (state) {
+    let address = app.ip + "function/findByType";
+    let body = {
+      appId: app.appid,
+      type:state
+    };
+    api.request({}, body, "POST", address, "application", false).then( res => {
+      console.log("功能开关");
+      console.log(res);
+      if(res.data.code == 200 && res.data.result){
+        let data = res.data.data;
+        let status = data.status;
+        switch(state){
+          case 7:
+            this.setData({ isOpenEvaluation: status});
+            break;
+          case 8:
+            this.setData({ isOpenReply: status});
+            break;
+        }
+      }
+      else{
+
+      }
+    } )
+  },
+
   // 获取首页文章
   getArticle: function () {
     this.showLoad();
     let address = app.ip + "shop/article/findPageList4App/" + app.appid;
-    console.log(address);
     let body = {
       appId:app.appid,
       pageIndex:0,
       pageSize:10
     }
+    if (!this.checkIsOverRequestNum){
+      return false;
+    }
     api.request( {}, body, "POST", address, "json", false).then(res=>{
-      console.log("文章");
-      console.log(res);
       if(res.data.code == 200 && res.data.result){
         this.hideLoad();
         let article = [];
@@ -98,6 +153,7 @@ Page({
         })
       }
       else{
+        this.getArticle();
         // 弹框提示，文章加载失败
         this.setData({
           isRepeatReq: true
@@ -105,21 +161,23 @@ Page({
         this.layOutTxt("文章加载失败");
       }
     }).catch(e=>{
+      this.setData({
+        isRepeatReq: true
+      })
       this.layOutTxt("文章加载失败");
     })
   },
 
-  // 获取政务基本信息
-  
-
   // 查询文章分类
   searchArticleType: function () {
     this.showLoad();
+    if (!this.checkIsOverRequestNum) {
+      return false;
+    }
     let address = app.ip + "shop/introType/findPageList4App/" + app.appid, body = {appId: app.appid};
     api.request( {}, body, "POST", address, "json", false ).then( res=>{
-      console.log("文章分类");
-      console.log(res);
       if(res.data.code == 200 && res.data.result){
+        this.hideLoad();
         let data = res.data.data.list;
         let menu = [];
         data.map( (item, index) => {
@@ -133,13 +191,13 @@ Page({
         this.setData({menu});
       }
       else{
+        this.searchArticleType();
         this.layOutTxt("分类加载失败");
       }
     } )
   },
 
   toArticleClass: function (e) {
-    console.log(e);
     e = e.detail.load;
     let info = e.currentTarget.dataset.title;
     let id = e.currentTarget.dataset.id;
@@ -149,14 +207,12 @@ Page({
   },
 
   readArticle: function (e) {
-    console.log(e);
     wx.navigateTo({
       url: '/pages/articledetail/articledetail?articleid=' + e.currentTarget.dataset.id,
     })
   },
   
   readArticleByClickImg: function (e) {
-    console.log(e);
     e = e.detail.load;
     this.readArticle(e);
   },
@@ -166,8 +222,6 @@ Page({
       title: "新闻动态",
       path: "/pages/index/index",
       success: (r) => {
-        console.log("转发成功");
-        console.log(r);
         api.forwardStatic(app)
       }
     };
@@ -183,18 +237,16 @@ Page({
           isGetPower: true,
           power:res
         })
-        console.log(res);
-        // this.startEva();
         this.sendSecret(res);
-        // this.showModelTxt("获取资料中");
       },
       fail: (e) => {
-
+        this.layOutTxt("信息获取失败");
       }
     })
   },
 
   sendSecret: function (res) {
+    console.log(res);
     let address = app.ip + "member/info/updateByWeiXin";
     let body = {
       openId: app.openid,
@@ -204,16 +256,15 @@ Page({
       appInfoType: 1
     };
     api.request({}, body, "POST", address, "application", false).then(res => {
-      console.log(res);
       if (res.data.code == 200 && res.data.result) {
-        // let url = 
-        console.log("头像");
-        console.log(res);
-        if (res.data.code == 200 && res.data.result) {
-          let data = res.data.data;
-          let imgUrl = data.avatarUrl;
-          // this.startEva(imgUrl);
-        }
+        this.setData({
+          isGetPower: true
+        })
+      }
+      else{
+        this.setData({
+          isGetPower: false
+        })
       }
     })
   }

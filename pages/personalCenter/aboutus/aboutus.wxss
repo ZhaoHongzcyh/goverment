@@ -19,4 +19,9 @@
   margin-top: 42rpx;
   font-size: 30rpx;
   color: #333;
+  word-break: break-all;
+}
+
+.offarticle{
+  margin-top: 30%;
 }

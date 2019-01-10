@@ -1,7 +1,11 @@
  <!-- 广告轮播图 -->
 <wheelimg whileImg="{{ AdvertisementImgUrls }}" bind:click="readArticleByClickImg"/>
 <view class="govemenu">
-  <govmenu menu="{{ menu }}" bind:click="toArticleClass"/>
+  <govmenu menu="{{ menu }}" wx:if="{{ menu.length != 0 }}" bind:click="toArticleClass"/>
+  <view class="listloaderr" wx:if="{{ menu.length == 0 }}">
+    <view>分类列表加载失败，</view>
+    <view class="flushlist" bindtap="searchArticleType">刷新一次</view>
+ </view>
 </view>
 
 <block wx:for="{{article}}">
@@ -30,7 +34,7 @@
   </view>
 </view>
 <!-- 浮动区域 -->
-<suspen/>
+<suspen isOpenEvaluation="{{ isOpenEvaluation }}" isOpenReply="{{ isOpenReply }}"/>
 
 <!-- 加载等待区域 -->
 <load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>

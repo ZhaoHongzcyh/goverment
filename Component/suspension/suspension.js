@@ -4,7 +4,15 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    isOpenReply:{
+      type: Boolean,
+      value: false
+    },
 
+    isOpenEvaluation:{
+      type: Boolean,
+      value: false
+    }
   },
 
   /**

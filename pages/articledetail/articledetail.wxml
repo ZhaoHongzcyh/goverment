@@ -15,7 +15,7 @@
     <!-- 文章内容 -->
     <view class="articleContent">
       <block wx:for="{{ articleList }}">
-        <view class="articletxt">
+        <view class="articletxt" wx:if="{{ item.desciption != null }}">
           <text>{{ item.desciption }}</text>
           <image wx:if="{{ item.imgUrl != null }}" src="{{ item.imgUrl }}" class="articleimg"></image>
         </view>
@@ -29,7 +29,8 @@
           isSelf="{{ item.isSelf? 1:0 }}"
           userphoto="{{ item.iconUrl }}" 
           username="{{ item.nickname }}" 
-          time="{{ item.time }}" 
+          time="{{ item.time }}"
+          reply="{{ item.replyContent }}" 
           comment="{{ item.commentContent }}"/>
       </block>
     </view>

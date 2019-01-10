@@ -49,6 +49,10 @@ page{
   font-size: 30rpx;
   text-indent: 50rpx;
 }
+
+.articletxt text{
+  word-break: break-all;
+}
 /* 文章内容中的图片 */
 .articleimg{
   width: 80%;

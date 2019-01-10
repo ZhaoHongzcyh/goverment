@@ -1,10 +1,10 @@
 <!--Component/suspension/suspension.wxml-->
 <view class="suspenarea">
-  <view class="commonsus" bindtap="feedback">
+  <view class="commonsus" bindtap="feedback" wx:if="{{ isOpenReply }}">
     <image src="./img/feedback.png" class="suspenimg"></image>
     <view>意见反馈</view>
   </view>
-  <view class="commonsus test" bindtap="evaluat">
+  <view class="commonsus test" bindtap="evaluat" wx:if="{{ isOpenEvaluation }}">
     <image src="./img/test.png" class="suspenimg"></image>
     <view>我要测评</view>
   </view>

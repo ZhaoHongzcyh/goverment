@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    phone:null,
+    isOpenPhoneModel: true,
     evaluatList:null,//测评列表
     isRepeatReq: true,//测评为空时的提示
     isLoad: false, //模态框
@@ -14,11 +16,12 @@ Page({
   },
 
   onLoad: function (options) {
-    this.getEvaluationList();
+    // this.getEvaluationList();
+    this.isShowPhoneModel();
   },
 
   onShow: function () {
-
+    // this.checkModelState();
   },
 
   onShareAppMessage: function (ops) {
@@ -32,6 +35,88 @@ Page({
       }
     };
     return foreardObj;
+  },
+
+  // 关闭弹框
+  closePhoneModel: function () {
+    this.setData({
+      isOpenPhoneModel: false
+    })
+  },
+
+  // 本地判断是否需要展示获取用电话号码的弹框
+  isShowPhoneModel: function () {
+    let phone = wx.getStorageSync("phone");
+    if(!phone){
+      this.checkModelState();
+    }
+    else{
+      this.setData({
+        isOpenPhoneModel: false
+      });
+      this.getEvaluationList();
+    }
+  },
+
+  // 判断是否需要显示获取用户电话号码的弹框
+  checkModelState: function () {
+    let address = app.ip + "member/info/findIsMember4App/" + app.openid;
+    let body = {
+      openId: app.openid,
+      appId: app.appid
+    };
+    api.request({}, body, "POST", address, "application", false).then( res => {
+      console.log("判断是否会员");
+      console.log(res);
+      if(res.data.code == 200 && res.data.result){
+        let data = res.data.data;
+        this.setData({
+          isOpenPhoneModel: data,
+          phone: true
+        });
+        this.getEvaluationList();//获取测评列表数据
+      }
+      else{
+        this.setData({
+          isOpenPhoneModel: true
+        })
+      }
+    } )
+  },
+
+  // 获取用户电话
+  getPhoneNumber: function (e){
+    e = e.detail;
+    let address = app.ip + "member/info/becomeMember";
+    let body = {
+      openId: app.openid,
+      appId: app.appid,
+      encryptedData: e.encryptedData,
+      iv: e.iv
+    };
+    api.request({}, body, "POST", address, "application", false).then( res => {
+      console.log("认证中");
+      console.log(res);
+      if(res.data.code == 200 && res.data.result){
+        let data = res.data.data;
+        this.setData({
+          phone: data.phone,
+          isOpenPhoneModel: false
+        });
+        wx.setStorageSync("phone", data.phone);
+        this.getEvaluationList();//获取评测列表
+      }
+      else{
+        this.setData({
+          isOpenPhoneModel: true
+        });
+      }
+    } )
+  },
+
+  // 用户自定义电话号码
+  getPhoneByUser: function (e) {
+
   },
 
   // 隐藏加载模态框

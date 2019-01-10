@@ -1,5 +1,5 @@
 <!--pages/aboutus/aboutus.wxml-->
-<view class="aboutus">
+<view class="aboutus" wx:if="{{ baseInfo != null }}">
   <image class="usImg" src="{{ baseInfo.backgroudImgUrl }}"></image>
   <view class="title">{{ baseInfo.name }}</view>
   <view class="summary">{{ baseInfo.summary }}</view>
