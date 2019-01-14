@@ -3,16 +3,19 @@
       <view class="subject" data-id="{{ info.id }}">
         <text>{{ num }} .</text>
         <text class="type">填空题</text>
-        <text>{{ info.title }}</text>
+        <text class="singlecontent">{{ info.title }}</text>
       </view>
       <view class="txt">
-        <textarea  
+        <textarea
+          maxlength='200'  
           class="txtinput"
           data-id="{{ info.id }}"
           data-type="{{ info.type }}"
           value="{{ value }}" 
           data-subjectid="{{ info.subjectId }}"
           bindinput="fillback"
+          placeholder-class='plctitle'
+          placeholder="{{ info.mustAnswer == 1? '必答题':'非必答题' }}"
           ></textarea>
       </view>
     </view>

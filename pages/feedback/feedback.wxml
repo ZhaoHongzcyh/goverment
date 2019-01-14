@@ -1,5 +1,5 @@
 <!--pages/feedback/feedback.wxml-->
-<view class="feedback">
+<view class="feedback" wx:if="{{ !isSubmitSuccess }}">
   <view class="commoninput">
     <input 
       value="{{ nickname }}" 
@@ -31,7 +31,7 @@
 
   <view class="scoreinput">
     <textarea 
-      placeholder='请输入你的意见' 
+      placeholder='请输入您的意见*' 
       placeholder-class='textplc'
       bindinput='getUserMsg' 
       value="{{ content }}"></textarea>
@@ -40,5 +40,14 @@
   <view class="submitbtn" bindtap="checkFeedInfo">提交意见</view>
 </view>
 
+<view class="submitModel" wx:if="{{ isSubmitSuccess }}">
+  <view class="modelContent">
+    <view class="feedimg">
+      <image class="feedicon" src="./img/success.png"></image>
+    </view>
+    <view class="feedsuc">反馈提交成功,感谢您宝贵的意见</view>
+  </view>
+  <view class="foottxt">3s后返回首页</view>
+</view>
 <!-- 意见反馈进度模态框 -->
 <load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>

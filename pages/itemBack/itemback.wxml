@@ -1,5 +1,5 @@
 <!--题库-->
-<view class="page">
+<view class="page" wx:if="{{ !isSubSuc }}">
     <!-- 答题进度 -->
     <view class="progress">
       <progress percent="{{ ((ordernum+1)/subject.length) * 100 }}" 
@@ -40,21 +40,32 @@
     />
 </view>
 
-<view class="turnsubject" wx:if="{{ordernum != 0 && ordernum != subject.length-1 }}">
+<view class="turnsubject" wx:if="{{ordernum != 0 && ordernum != subject.length-1 && !isSubSuc}}">
   <view bindtap="upOrderNum"  class="pageup primary">上一题</view>
   <view bindtap="downOrderNum" class="pagedown primary">下一题</view>
 </view>
 
-<view class="turnsubject" wx:if="{{ordernum == 0 && subject.length != 1}}">
+<view class="turnsubject" wx:if="{{ordernum == 0 && subject.length != 1 && !isSubSuc}}">
   <view bindtap="downOrderNum" class="firstpage">下一题</view>
 </view>
-<view class="turnsubject" wx:if="{{subject.length == 1}}">
+<view class="turnsubject" wx:if="{{subject.length == 1 && !isSubSuc}}">
   <view class="firstpage" bindtap="submitAnswer">提交</view>
 </view>
 
-<view class="turnsubject" wx:if="{{ordernum != 0 && ordernum == subject.length-1 }}">
+<view class="turnsubject" wx:if="{{ordernum != 0 && ordernum == subject.length-1 && !isSubSuc}}">
   <view bindtap="upOrderNum"  class="pageup primary">上一题</view>
   <view bindtap="downOrderNum" class="pagedown primary" bindtap="submitAnswer">提交</view>
+</view>
+
+<!-- 测评提交模态框 -->
+<view class="submitModel" wx:if="{{ isSubSuc }}">
+  <view class="modelContent">
+    <view class="feedimg">
+      <image class="feedicon" src="./img/success.png"></image>
+    </view>
+    <view class="feedsuc">测评提交成功,感谢您宝贵的时间</view>
+  </view>
+  <view class="foottxt">3s后返回首页</view>
 </view>
 
 <!-- 加载失败 刷新提示 -->
@@ -64,4 +75,5 @@
 
 <!-- 题库加载等待模态框 -->
 <load isLoad="{{ isLoad }}" loadtxt="{{ loadtxt }}"/>
+
 

@@ -47,7 +47,7 @@
   </view>
 </view>
 
-<view wx:if="{{ allArticle.length == 0 }}" class="offarticle">
+<view wx:if="{{ isLoadErr }}" class="offarticle">
     <loaderr bind:repeat="searchAllArticle" infotxt="未查询到相关文章" eventtxt="刷新一次"/>
 </view>
 

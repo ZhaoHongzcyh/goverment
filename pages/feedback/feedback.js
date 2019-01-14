@@ -4,6 +4,7 @@ const api = require("../../utils/util.js");
 
 Page({
   data: {
+    isSubmitSuccess: false,
     scoredata:[1,0,0,0,0],//1:好评，0：未作评价
     nickname:null,
     phone:null,
@@ -95,14 +96,8 @@ Page({
     let phone = api.strFormat( this.data.phone );
     let content = api.strFormat( this.data.content );
     let msg = null;
-    if(nickname == ""){
-      msg = '请输入姓名';
-    }
-    else if( phone == ""){
-      msg = '请输入电话';
-    }
-    else if(content == ""){
-      msg = "请输入评论";
+    if(content == ""){
+      msg = "请输入意见";
     }
     else{
       return null;
@@ -129,7 +124,11 @@ Page({
   checkFeedInfo: function () {
     let msg = this.checkIInfoIsComplete();
     if(msg != null){
-      this.layOutTxt(msg);
+      wx.showToast({
+        title: msg,
+        icon:"none"
+      });
+      return false;
     }
     else{
       this.feedBack();
@@ -150,20 +149,22 @@ Page({
     let body = {
       appId: app.appid,
       openId: app.openid,
-      nickname: this.data.nickname,
-      phone: this.data.phone,
+      nickname: this.data.nickname == null? '' : this.data.nickname,
+      phone: this.data.phone == null? '' : this.data.phone,
       level: level,
       content: this.data.content
     };
+    
     api.request({}, body, "POST", address, "application", false).then(res => {
       console.log(res);
       if(res.data.code == 200 && res.data.result){
-        this.layOutTxt("反馈成功");
+        this.hideLoad();
+        this.setData({ isSubmitSuccess: true});
         setTimeout(()=>{
           wx.navigateBack({
             default: 1
           })
-        },2000)
+        },3000)
       }
       else{
         this.layOutTxt("反馈失败");

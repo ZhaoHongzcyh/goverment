@@ -3,7 +3,7 @@
   <view class="subject" data-id="{{ info.id }}">
     <text>{{ num }} .</text>
     <text class="type">多选题</text>
-    <text>{{ info.title }}</text>
+    <text class="multtitle">{{ info.title }}</text>
   </view>
   <view class="options">
     <block wx:for="{{ options }}">
@@ -17,19 +17,22 @@
         data-subjectid="{{ item.subjectId }}"
         bindtap="choose" 
         data-value="{{ item.content }}">
+        <view class="chooseimg">
           <image class="chooseimg" 
        src="{{ item.checked? '/pages/itemBack/img/choose.png':'/pages/itemBack/img/nochoose.png' }}">
           </image>
-        <view>{{ item.content }}</view>
+        </view>
+        <view class="singlecontent">{{ item.content }}</view>
       </view>
       <view wx:if="{{ item.fill == 1 }}">
           <textarea
+            maxlength='200'
             data-index="{{index}}"  
             disabled="{{!item.checked}}"
             data-id="{{ item.id }}"
             bindinput="getContent"
             placeholder-class="plctxt"
-            placeholder="{{ item.mustFill == 1? '选择之后需要必填':'' }}"
+            placeholder="{{ item.mustFill == 1? '选择之后需要必填':'选择之后非必填' }}"
             data-subjectid="{{ item.subjectId }}" 
             class="fill" value="{{ item.txt }}">
             </textarea>

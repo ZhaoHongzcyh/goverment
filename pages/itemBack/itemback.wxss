@@ -61,3 +61,42 @@
   text-align: center;
   background-color: #4963C4;
 }
+
+
+/* 测评提交成功模态框 */
+.submitModel{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0rpx;
+  z-index: 2;
+  background-color: white;
+}
+
+.modelContent{
+  position: relative;
+  margin: auto;
+  margin-top: 30%;
+  width: 600rpx;
+  height: 480rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.feedicon,.feedimg{
+  text-align: center;
+  margin: auto;
+  width: 184rpx;
+  height: 184rpx;
+  margin-bottom: 50rpx;
+}
+
+.foottxt{
+  position: absolute;
+  bottom: 100rpx;
+  width: 100%;
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+}

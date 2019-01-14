@@ -21,6 +21,7 @@
 .evatitle{
   color: #333;
   font-size: 34rpx;
+  word-break: break-all;
 }
 
 .evanum{
@@ -48,7 +49,9 @@
 .content{
   font-size: 30rpx;
   margin-top: 38rpx;
+  padding: 10rpx;
   color: #333;
+  word-break: break-all;
 }
 
 .submit{

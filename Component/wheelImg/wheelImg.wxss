@@ -1,5 +1,11 @@
 /* Component/wheelImg/wheelImg.wxss */
-.wheelImg{
+.turnImgSwip{
   width: 100%;
-  height: 360rpx;
+  height: 450rpx;
+  padding: 0rpx;
+  margin: 0rpx;
+}
+.wheelImg{
+  height: 100%;
+  width: 100%;
 }

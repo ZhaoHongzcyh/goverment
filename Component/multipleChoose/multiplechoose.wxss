@@ -15,6 +15,10 @@
   color: white;
 }
 
+.multtitle{
+  word-break: break-all;
+}
+
 .options{
   margin-top: 50rpx;
 }
@@ -24,16 +28,23 @@
   align-items: center;
   margin: auto;
   margin-top: 40rpx;
+  padding: 10rpx;
   padding-left: 20rpx;
   overflow: auto;
-  height: 90rpx;
+  min-height: 90rpx;
   width: 638rpx;
   line-height: 90rpx;
   border-radius: 10rpx;
   border: 1rpx solid #999;
 }
 
+.singlecontent{
+  word-break: break-all;
+}
+
 .chooseimg{
+  line-height: 32rpx;
+  text-align: center;
   width: 32rpx;
   height: 32rpx;
   border-radius: 50%;

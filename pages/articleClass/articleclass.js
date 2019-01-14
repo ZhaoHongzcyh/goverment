@@ -20,6 +20,7 @@ Page({
     articleTypeId:null,//文章类型id
     articleTypeTitle:null,
     allArticle:[],
+    isLoadErr:false,
     current: 0 //当前所在滑块的index
   },
 
@@ -68,9 +69,8 @@ Page({
     this.showLoad();
     let address = app.ip + "shop/introType/findPageList4App/" + app.appid, body = { appId: app.appid };
     api.request({}, body, "POST", address, "json", false).then(res => {
-      console.log("文章分类");
-      console.log(res);
       if (res.data.code == 200 && res.data.result) {
+       
         this.hideLoad();
         let data = res.data.data.list;
         let articleType = [];
@@ -111,19 +111,20 @@ Page({
       typeId: this.data.articleTypeId
     };
     api.request({}, body, "POST", address, "application", false).then(res => {
-      console.log(res);
-      console.log("所有文章");
       if(res.data.code == 200 && res.data.result){
+        this.setData({ isLoadErr: false });
         this.hideLoad();
         let list = res.data.data.list;
         list.map((item, index) => {
           item.summary.datetime = item.summary.createDate.split('T')[0];
         })
         this.setData({
-          allArticle: list
+          allArticle: list,
+          isLoadErr: list.length == 0? true:false
         })
       }
       else{
+        this.setData({ isLoadErr: true });
         this.layOutTxt("文章查询失败");
       }
     })

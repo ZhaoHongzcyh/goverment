@@ -279,6 +279,9 @@ Page({
       this.layOutTxt("评论为空");
       return false;
     }
+    else{
+      commentContent = e.detail.value
+    }
     let address = app.ip + "shop/article/comment";
     let body = {
       introId: this.data.articleid,

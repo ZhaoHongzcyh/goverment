@@ -15,6 +15,7 @@ Page({
     answering:null,
     optionsList:[],
     isNeedFillSingle: false,
+    mustAnswer:false,//是否为必答题
     ordernum: 0, //当前处于第几题
     txtValue:null,//填空题用户已经填写的答案
     singleAnswer:[], //用户单选答案库
@@ -70,7 +71,7 @@ Page({
     })
   },
 
-  // 单选必填未填写的时候，提醒信息
+  // 选择了必填但是未填写的时候，提醒信息
   alertModel: function () {
     let isNeedFillSingle = this.data.isNeedFillSingle;
     if (isNeedFillSingle){
@@ -81,6 +82,21 @@ Page({
       return false;
     }
     else{
+      return true;
+    }
+  },
+
+  // 必须填写的提醒
+  alertInfo: function () {
+    let mustAnswer = this.data.mustAnswer;
+    if(mustAnswer) {
+      wx.showToast({
+        title: '该题为必答题',
+        icon: "none"
+      });
+      return false;
+    }
+    else {
       return true;
     }
   },
@@ -127,8 +143,13 @@ Page({
     // optionsList.map( (item,index) => {
     //   if(item)
     // } )
+    // 判断answering是否时必答题
+    let mustAnswer = answering.mustAnswer;
+    this.setData({ mustAnswer });
     this.setData({ answering, optionsList, ordernum });
-    this.storageAnswerState(answering, optionsList)
+    this.storageAnswerState(answering, optionsList);
+
+    
   },
 
   // 上一题
@@ -136,6 +157,9 @@ Page({
     if(!this.alertModel()){
       return false;
     }
+    // if( !this.alertInfo() ){
+    //   return false; 
+    // }
     let ordernum = this.data.ordernum;
     let subject = this.data.subject;
     this.handleAnswing( ordernum - 1, subject);
@@ -146,6 +170,9 @@ Page({
     if (!this.alertModel()) {
       return false;
     }
+    if (!this.alertInfo()) {
+      return false;
+    }
     let ordernum = this.data.ordernum;
     let subject = this.data.subject;
     this.handleAnswing(ordernum + 1, subject);
@@ -153,7 +180,6 @@ Page({
 
   // 保留用户选择的答案状态
   storageAnswerState: function (answering, optionsList) {
-    console.log("执行")
     let hasChoosed = [];
     if(answering.type == 1){
       // 单选题
@@ -165,6 +191,7 @@ Page({
             if(option.id == item.optionId){
               option.checked = true;
               option.txt = item.content;
+              this.setData({ mustAnswer: false});
             }
             else{
               option.checked = false;
@@ -190,15 +217,12 @@ Page({
         multipAnswer.map( (mul, order) => {
           if (mul.optionId == item.id){
             item.txt = mul.content;
-            console.log("等于")
-          }
-          else{
-            // console.log(mul.id,item.id);
           }
         } )
         if (answer.includes(item.id)){
           let order = answer.indexOf(item.id);
           item.checked = true;
+          this.setData({ mustAnswer: false });
         }
         else{
           item.checked = false;
@@ -241,6 +265,7 @@ Page({
       else{
         this.setData({ isNeedFillSingle: false });
       }
+      this.setData({ mustAnswer: false});
       this.checkMultipAnswer(subjectid, optionId, content);
     }
     else if( choosetype == 1 ){
@@ -259,12 +284,14 @@ Page({
         }
         this.checkSingleAnswer(detailList, content);
       })
+      this.setData({ mustAnswer: false})
     }
     else if(choosetype == 3){
       let detailList = {
         subjectId: subjectid,
         content: content
       }
+      this.setData({ mustAnswer: false });
       this.checkTextContent(detailList);
     }
     
@@ -363,12 +390,13 @@ Page({
       console.log("提交答案");
       console.log(res);
       if(res.data.code == 200 && res.data.result){
-        this.layOutTxt("提交成功");
+        this.hideLoad();
+        this.setData({ isSubSuc: true });
         setTimeout( ()=>{
           wx.navigateBack({
             delta: 2
           })
-        },2000 );
+        },3000 );
       }
       else{
         this.layOutTxt("提交失败");

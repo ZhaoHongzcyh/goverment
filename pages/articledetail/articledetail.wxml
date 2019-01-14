@@ -15,9 +15,11 @@
     <!-- 文章内容 -->
     <view class="articleContent">
       <block wx:for="{{ articleList }}">
-        <view class="articletxt" wx:if="{{ item.desciption != null }}">
-          <text>{{ item.desciption }}</text>
-          <image wx:if="{{ item.imgUrl != null }}" src="{{ item.imgUrl }}" class="articleimg"></image>
+        <view class="articletxt">
+          <text wx:if="{{item.desciption != null}}">{{ item.desciption }}</text>
+        </view>
+        <view wx:if="{{ item.imgUrl != null }}" class="articleImgarea">
+          <image src="{{ item.imgUrl }}" mode="aspectFit" class="articleimg"></image>
         </view>
       </block>
     </view>

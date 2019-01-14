@@ -15,6 +15,9 @@
   margin-top: 30rpx;
   margin-left: 20rpx;
   font-size: 30rpx;
+  word-break: break-all;
+  max-height: 120rpx;
+  overflow: hidden;
   color: #333;
 }
 

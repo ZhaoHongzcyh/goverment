@@ -55,6 +55,12 @@
 .textplc{
   font-size: 28rpx;
 }
+
+.textplc::after{
+  content:"*";
+  color: red;
+}
+
 .submitbtn{
   width: 660rpx;
   height: 96rpx;
@@ -65,4 +71,42 @@
   text-align: center;
   color: white;
   background-color: #4963C4;
+}
+
+/* 反馈提交成功 */
+.submitModel{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0rpx;
+  z-index: 2;
+  background-color: white;
+}
+
+.modelContent{
+  position: relative;
+  margin: auto;
+  margin-top: 30%;
+  width: 600rpx;
+  height: 480rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.feedicon,.feedimg{
+  text-align: center;
+  margin: auto;
+  width: 184rpx;
+  height: 184rpx;
+  margin-bottom: 50rpx;
+}
+
+.foottxt{
+  position: absolute;
+  bottom: 100rpx;
+  width: 100%;
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
 }

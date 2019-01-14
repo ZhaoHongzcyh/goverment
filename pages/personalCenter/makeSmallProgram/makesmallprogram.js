@@ -113,10 +113,13 @@ Page({
 
   // 提交定制信息
   submitInfo: function () {
-    this.showModelTxt("提交中")
     let msg = this.checkUserInfo();
     if( msg != null ){
-      this.layOutTxt(msg);
+      wx.showToast({
+        title: msg,
+        icon:"none"
+      });
+      return false;
     }
     else{
       let address = app.ip + "poster/form/addForm";
@@ -126,6 +129,7 @@ Page({
         phone: this.data.phone,
         summary: this.data.reply
       };
+      this.showModelTxt("提交中")
       api.request({}, body, "POST", address, "application", false).then( res => {
         console.log(res);
         if(res.data.code == 200 && res.data.result){

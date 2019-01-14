@@ -13,6 +13,12 @@ page{
 .head{
   background-color: white;
 }
+
+.title{
+  padding: 10rpx;
+  word-break: break-all;
+}
+
 .readnum_time{
   display: flex;
   align-items: center;
@@ -56,7 +62,10 @@ page{
 /* 文章内容中的图片 */
 .articleimg{
   width: 80%;
-  margin-left: 10%;
+}
+
+.articleImgarea{
+  text-align: center;
 }
 
 .comment{

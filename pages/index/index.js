@@ -24,7 +24,7 @@ Page({
   },
 
   onLoad: function () {
-    
+    this.getTurnImg();
   },
 
   onShow: function () {
@@ -89,6 +89,38 @@ Page({
     }
   },
 
+  // 请求轮播图
+  getTurnImg: function (){
+    let address = app.ip + "goods/picture/findPageList4App/" + app.appid;
+    let body = {
+      appId: app.appid
+    };
+    if(!this.checkIsOverRequestNum()){
+      return false;
+    }
+    api.request({}, body, "POST", address, "json", false).then(res => {
+      console.log("轮播");
+      console.log(res);
+      if(res.data.code == 200 && res.data.result){
+        let AdvertisementImgUrls = [];
+        let list = res.data.data.list;
+        list.map( (item,index) => {
+          console.log("轮播")
+          let single = {
+            src: item.imgUrl,
+            id: item.linkUrl.split("/")[3]
+          }
+          AdvertisementImgUrls.push(single);
+        } )
+        console.log(AdvertisementImgUrls)
+        this.setData({ AdvertisementImgUrls})
+      }
+      else{
+        this.getTurnImg();
+      }
+    })
+  },
+
   // 查询测评功能开关
   searchFunctionSwitch: function (state) {
     let address = app.ip + "function/findByType";
@@ -126,7 +158,9 @@ Page({
       pageIndex:0,
       pageSize:10
     }
-    if (!this.checkIsOverRequestNum){
+
+    // 防止请求超过最大请求限制
+    if (!this.checkIsOverRequestNum()) {
       return false;
     }
     api.request( {}, body, "POST", address, "json", false).then(res=>{
@@ -137,19 +171,18 @@ Page({
         let data = res.data.data.list;
         data.map((item,index)=>{
           item.summary.datetime = item.summary.createDate.split('T')[0];
-          if(index < 5){
-            let singlelist = {
-              src: item.summary.imgUrl,
-              id: item.summary.id
-            }
-            AdvertisementImgUrls.push(singlelist)
-          }
+          // if(index < 5){
+          //   let singlelist = {
+          //     src: item.summary.imgUrl,
+          //     id: item.summary.id
+          //   }
+          //   AdvertisementImgUrls.push(singlelist)
+          // }
         })
         this.setData({
           baseInfo: app.baseInfo,
           isRepeatReq: false,
-          article:data,
-          AdvertisementImgUrls: AdvertisementImgUrls
+          article:data
         })
       }
       else{
@@ -256,16 +289,19 @@ Page({
       appInfoType: 1
     };
     api.request({}, body, "POST", address, "application", false).then(res => {
-      if (res.data.code == 200 && res.data.result) {
-        this.setData({
-          isGetPower: true
-        })
-      }
-      else{
-        this.setData({
-          isGetPower: false
-        })
-      }
+      this.setData({
+        isGetPower: true
+      })
+      // if (res.data.code == 200 && res.data.result) {
+      //   this.setData({
+      //     isGetPower: true
+      //   })
+      // }
+      // else{
+      //   this.setData({
+      //     isGetPower: false
+      //   })
+      // }
     })
   }
 })

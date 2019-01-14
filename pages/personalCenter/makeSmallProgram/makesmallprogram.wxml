@@ -24,7 +24,7 @@
     </view>
 
     <view>
-      <textarea value="{{ reply }}" placeholder='请填写你的留言*' bindinput="getUserReply" class="textarea"></textarea>
+      <textarea value="{{ reply }}" placeholder-class='inputplc' placeholder='请填写你的留言*' bindinput="getUserReply" class="textarea"></textarea>
     </view>
   </view>
   <view class="submit" bindtap="submitInfo">提交</view>
